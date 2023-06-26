@@ -2,12 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🍪 Leckerli</title>
   </head>
-  <body>
+  <body style="background: #cbd5e1;">
     Your Website here
-    <script type="module" src="/src/index.tsx"></script>
+    <script defer type="module" src="/src/index.tsx"></script>
+
+    <script>
+      window.leckerliSettings = {
+        translations: {
+          banner: {
+            title: 'Nous respectons votre vie privée.',
+            description: 'Nous utilisons des cookies pour améliorer votre expérience de navigation, diffuser des publicités ou des contenus personnalisés et analyser notre trafic. En cliquant sur « Tout accepter », vous consentez à notre utilisation des cookies.',
+            accept: 'Accepter tout',
+            reject: 'Tout rejeter',
+            customise: 'Personnaliser'
+          }
+        }
+      }
+    </script>
+
+    <style>
+      :root {
+        /*
+        --leckerli-primary: #ff0099;
+        --leckerli-primary-hover: #d1007e;
+        --leckerli-primary-active: #9D005F;
+        --leckerli-font: sans-serif;
+        */
+      }
+    </style>
   </body>
 </html>
