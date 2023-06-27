@@ -14,11 +14,14 @@
   },
   "dependencies": {
     "@types/ramda": "^0.29.2",
+    "js-cookie": "^3.0.5",
     "preact": "^10.13.2",
-    "ramda": "^0.29.0"
+    "ramda": "^0.29.0",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",
+    "@types/js-cookie": "^3.0.3",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.24",
     "tailwindcss": "^3.3.2",
