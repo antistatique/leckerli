@@ -16,7 +16,8 @@ const defaultSettings = {
     }
   ],
   baseData: {},
-  cookie: {}
+  cookie: {},
+  choiceMade: false,
 };
 
 export default defaultSettings;

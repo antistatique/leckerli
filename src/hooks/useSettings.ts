@@ -7,8 +7,10 @@ import defaultSettings from "../defaultSettings.ts";
 import cookies from "js-cookie";
 
 type SettingsStore = Settings & {
+  choiceMade: boolean;
   cookie: Cookie;
-  initCookie: () => void;
+  init: () => void;
+  setChoice: (value: boolean) => void;
   setPermissions: (slugs: string | string[], value: boolean) => void;
   togglePermission: (slugs: string) => void;
   acceptAll: () => void;
@@ -32,16 +34,27 @@ initialState.cookie = isNotNil(initialCookie)
     [val.slug]: false,
   }), initialState.baseData);
 
+// With the existing cookie or not, set the choiceMade
+initialState.choiceMade = isNotNil(initialCookie);
+
 // Deliver the hook
 const useSettings = create<SettingsStore>((set, getState) => ({
   ...initialState,
 
-  // Write cookie if not exist
-  initCookie: () => {
-      if (isNil(initialCookie)) {
-        cookies.set(getState().name, JSON.stringify(getState().cookie));
-      }
-    },
+  // Write cookie if not exist and setup eventListeners
+  init: () => {
+    if (isNil(initialCookie)) {
+      cookies.set(getState().name, JSON.stringify(getState().cookie));
+    }
+
+    // Open banner by resseting choiceMade
+    document.addEventListener('leckerli-open-banner', () => getState().setChoice(false));
+  },
+
+  // Manage banner display
+  setChoice: (value: boolean) => set(state => {
+    return { ...state, choiceMade: value };
+  }),
 
   // Set cookie permission(s)
   setPermissions: (slugs: string | string[], value: boolean) =>
@@ -59,7 +72,7 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
       cookies.set(state.name, JSON.stringify(newCookie));
 
-      return { ...state, cookie: newCookie };
+      return { ...state, choiceMade: true, cookie: newCookie };
     }),
 
   // Toggle cookie permission
@@ -76,7 +89,7 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
       cookies.set(state.name, JSON.stringify(newCookie));
 
-      return { ...state, cookie: newCookie };
+      return { ...state, choiceMade: true, cookie: newCookie };
     }),
 
   // All permission at true shorthand

@@ -4,16 +4,16 @@ import Banner from './Banner';
 import useSettings from '../hooks/useSettings';
 
 const App = () => {
-  const { initCookie, cookie }  = useSettings();
+  const { choiceMade, init, cookie }  = useSettings();
 
   useEffect(() => {
-    initCookie();
+    init();
   }, []);
 
   return (
     <>
       <pre>{JSON.stringify(cookie, null, 2)}</pre>
-      <Banner/>
+      {!choiceMade && <Banner/>}
     </>
   );
 }
