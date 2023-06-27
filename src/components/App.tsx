@@ -5,7 +5,7 @@ import Settings from './Settings';
 import useSettings from '../hooks/useSettings';
 
 const App = () => {
-  const { choiceMade, init, cookie, settingsOpen }  = useSettings();
+  const { choiceMade, init, settingsOpen }  = useSettings();
 
   useEffect(() => {
     init();
@@ -13,7 +13,6 @@ const App = () => {
 
   return (
     <>
-      <pre>{JSON.stringify(cookie, null, 2)}</pre>
       {!choiceMade && !settingsOpen && <Banner/>}
       {settingsOpen && <Settings/>}
     </>
