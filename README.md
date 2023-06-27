@@ -1,6 +1,6 @@
 # 🍪 Leckerli
 
-> Lightweight and customisable GDPR cookie manager
+> Lightweight (~16kB gzip) and customisable GDPR cookie manager
 
 ## 📗 Usage
 
@@ -10,14 +10,23 @@ To use leckerli into your website, simply add the following CSS/JavaScript in yo
 <html>
 <head>
   <!-- somewhere in the <head /> -->
-  <link rel="stylesheet" href="leckerli.css">
+  <link
+    rel="stylesheet"
+    href="https://www.unpkg.com/@antistatique/leckerli@1.0.0/dist/assets/leckerli.min.css"
+  />
 </head>
 <body>
   <!-- at the end of your <body /> -->
-  <<script type="module" src="leckerli.js"></script>
+  <script
+    defer
+    type="module"
+    src="https://www.unpkg.com/@antistatique/leckerli@1.0.0/dist/assets/leckerli.min.js"
+  ></script>
 </body>
 </html>
 ```
+
+You can also download locally the CSS & JS files from [each releases](https://github.com/antistatique/leckerli/releases) and use the file located in `dist/assets/`.
 
 ## ⚙️ Configuration
 
