@@ -1,10 +1,11 @@
 import { useEffect } from 'preact/hooks';
 
 import Banner from './Banner';
+import Settings from './Settings';
 import useSettings from '../hooks/useSettings';
 
 const App = () => {
-  const { choiceMade, init, cookie }  = useSettings();
+  const { choiceMade, init, cookie, settingsOpen }  = useSettings();
 
   useEffect(() => {
     init();
@@ -13,7 +14,8 @@ const App = () => {
   return (
     <>
       <pre>{JSON.stringify(cookie, null, 2)}</pre>
-      {!choiceMade && <Banner/>}
+      {!choiceMade && !settingsOpen && <Banner/>}
+      {settingsOpen && <Settings/>}
     </>
   );
 }

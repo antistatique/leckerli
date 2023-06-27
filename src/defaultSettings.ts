@@ -5,7 +5,7 @@ const defaultSettings = {
     description: 'We use cookies to improve your browsing experience, deliver personalised advertising or content and analyse our traffic. By clicking on "Accept all", you consent to our use of cookies.',
     accept: 'Accept all',
     reject: 'Deny',
-    customise: 'Customize'
+    customise: 'Customize',
   },
   permissions: [
     {
@@ -18,6 +18,7 @@ const defaultSettings = {
   baseData: {},
   cookie: {},
   choiceMade: false,
+  settingsOpen: false,
 };
 
 export default defaultSettings;

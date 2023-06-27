@@ -8,9 +8,11 @@ import cookies from "js-cookie";
 
 type SettingsStore = Settings & {
   choiceMade: boolean;
+  settingsOpen: boolean;
   cookie: Cookie;
   init: () => void;
   setChoice: (value: boolean) => void;
+  setModal: (value: boolean) => void;
   setPermissions: (slugs: string | string[], value: boolean) => void;
   togglePermission: (slugs: string) => void;
   acceptAll: () => void;
@@ -43,17 +45,27 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
   // Write cookie if not exist and setup eventListeners
   init: () => {
-    if (isNil(initialCookie)) {
+    if (isNil(initialCookie) && getState().choiceMade) {
       cookies.set(getState().name, JSON.stringify(getState().cookie));
     }
 
     // Open banner by resseting choiceMade
-    document.addEventListener('leckerli-open-banner', () => getState().setChoice(false));
+    document.addEventListener('leckerli:open-banner', () => getState().setChoice(false));
+    document.addEventListener('leckerli:close-banner', () => getState().setChoice(true));
+
+    // Manage modal
+    document.addEventListener('leckerli:open-modal', () => getState().setModal(true));
+    document.addEventListener('leckerli:close-modal', () => getState().setModal(false));
   },
 
   // Manage banner display
   setChoice: (value: boolean) => set(state => {
     return { ...state, choiceMade: value };
+  }),
+
+  // Manage modal display
+  setModal: (value: boolean) => set(state => {
+    return { ...state, settingsOpen: value };
   }),
 
   // Set cookie permission(s)
