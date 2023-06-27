@@ -27,30 +27,6 @@ To configure Leckerli, attach a `leckerliSettings` object to your `window`. Some
 <script>
   window.leckerliSettings = {
     // Your settings
-    baseData: {
-      consentid: 'b638a4a9-a846-475a-a29b-d2bb596cb735',
-    },
-    banner: {
-      title: 'Nous respectons votre vie privée.',
-      description: 'Nous utilisons des cookies pour améliorer votre expérience de navigation, diffuser des publicités ou des contenus personnalisés et analyser notre trafic. En cliquant sur « Tout accepter », vous consentez à notre utilisation des cookies.',
-      accept: 'Accepter tout',
-      reject: 'Tout rejeter',
-      customise: 'Personnaliser',
-    },
-    permissions: [
-      {
-        slug: 'ga',
-        title: 'Google analytics',
-        description: 'To track all your actions.'
-
-      },
-      {
-        slug: 'settings',
-        title: 'Preferences',
-        description: 'Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in.'
-
-      }
-    ],
   }
 </script>
 ```
