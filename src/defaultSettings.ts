@@ -12,7 +12,6 @@ const defaultSettings = {
       slug: 'settings',
       title: 'Preferences',
       description: 'Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in.'
-
     }
   ],
   baseData: {},

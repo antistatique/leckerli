@@ -7,9 +7,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        entryFileNames: 'assets/[name].js',
-        chunkFileNames: 'assets/[name].js',
-        assetFileNames: 'assets/[name].[ext]'
+        entryFileNames: 'assets/leckerli.min.js',
+        chunkFileNames: 'assets/leckerli.min.js',
+        assetFileNames: 'assets/leckerli.min.[ext]'
       }
     }
   }
