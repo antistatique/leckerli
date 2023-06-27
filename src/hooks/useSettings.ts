@@ -65,6 +65,7 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
   // Manage modal display
   setModal: (value: boolean) => set(state => {
+    document.dispatchEvent(new CustomEvent(`leckerli:modal-${value ? 'opened' : 'closed'}`));
     return { ...state, settingsOpen: value };
   }),
 
@@ -84,6 +85,8 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
       cookies.set(state.name, JSON.stringify(newCookie));
 
+      document.dispatchEvent(new CustomEvent('leckerli:permissions-updated'));
+
       return { ...state, choiceMade: true, cookie: newCookie };
     }),
 
@@ -100,6 +103,8 @@ const useSettings = create<SettingsStore>((set, getState) => ({
       }, state.baseData);
 
       cookies.set(state.name, JSON.stringify(newCookie));
+
+      document.dispatchEvent(new CustomEvent('leckerli:permissions-updated'));
 
       return { ...state, choiceMade: true, cookie: newCookie };
     }),

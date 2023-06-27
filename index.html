@@ -39,7 +39,11 @@
           }
         ],
       }
-     */
+      */
+
+      document.addEventListener('leckerli:modal-closed', () => console.log('modal closed'))
+      document.addEventListener('leckerli:modal-opened', () => console.log('modal opened'))
+      document.addEventListener('leckerli:permissions-updated', () => console.log('permissions updated'))
     </script>
 
     <style>

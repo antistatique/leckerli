@@ -125,6 +125,31 @@ And after a `JSON.parse()`:
 
 Basically, it's the `baseData` values, if there is any, and for each `permissions.slug`, a **boolean**.
 
+## 🎫 Events
+
+Here is a list of events you can **listen**:
+
+```js
+// To listen to the permissions / cookie's updates
+document.addEventListener('leckerli:permissions-updated');
+
+// To listen the modal states
+document.addEventListener('leckerli:modal-closed');
+document.addEventListener('leckerli:modal-opened');
+```
+
+Here is a list of events you can **dispatch**:
+
+```js
+// To manage the banner, even after the user's choice
+document.dispatchEvent(new CustomEvent('leckerli:open-banner'));
+document.dispatchEvent(new CustomEvent('leckerli:close-banner'));
+
+// To manage the settings modal
+document.dispatchEvent(new CustomEvent('leckerli:open-modal'));
+document.dispatchEvent(new CustomEvent('leckerli:close-modal'));
+```
+
 ## 🎨 Theming
 
 You can theme Leckerli with the following CSS custom properties (variables):
