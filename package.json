@@ -1,6 +1,6 @@
 {
   "name": "@antistatique/leckerli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Lightweight and customisable GDPR cookie consent manager",
   "private": false,
   "repository": "https://github.com/antistatique/leckerli",
