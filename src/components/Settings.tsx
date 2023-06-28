@@ -5,7 +5,7 @@ const Settings = () => {
     useSettings();
 
   return (
-    <div className="fixed w-full max-w-md max-h-full px-5 py-4 m-2 text-black z-[9999] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background text-foreground font-primary rounded-md">
+    <div className="fixed bottom-0 left-0 w-full max-w-lg max-h-full px-5 py-4 m-2 text-black shadow-md shadow-black/25 z-[9999] bg-background text-foreground font-primary rounded-md">
       <div className="space-y-6">
         <h3 className="w-10/12 m-0 text-xl font-semibold font-primary md:text-2xl">
           {banner.customise}

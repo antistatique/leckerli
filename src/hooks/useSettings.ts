@@ -49,7 +49,9 @@ const useSettings = create<SettingsStore>((set, getState) => ({
   // Write cookie if not exist and setup eventListeners
   init: () => {
     if (isNil(initialCookie) && getState().choiceMade) {
-      cookies.set(getState().name, JSON.stringify(getState().cookie));
+      cookies.set(getState().name, JSON.stringify(getState().cookie), {
+        domain: window.location.host,
+      });
     }
 
     // Emit initial event and data or null if the choice has not been made
@@ -103,7 +105,9 @@ const useSettings = create<SettingsStore>((set, getState) => ({
         return acc;
       }, state.baseData);
 
-      cookies.set(state.name, JSON.stringify(newCookie));
+      cookies.set(state.name, JSON.stringify(newCookie), {
+        domain: window.location.host,
+      });
 
       // Emit event and data
       document.dispatchEvent(
@@ -129,7 +133,9 @@ const useSettings = create<SettingsStore>((set, getState) => ({
         return acc;
       }, state.baseData);
 
-      cookies.set(state.name, JSON.stringify(newCookie));
+      cookies.set(state.name, JSON.stringify(newCookie), {
+        domain: window.location.host,
+      });
 
       // Emit event and data
       document.dispatchEvent(

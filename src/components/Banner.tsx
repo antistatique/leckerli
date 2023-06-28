@@ -4,7 +4,7 @@ const Banner = () => {
   const { banner, acceptAll, rejectAll, setModal } = useSettings();
 
   return (
-    <div className="fixed bottom-0 left-0 max-w-md px-5 py-4 m-2 z-[9998] bg-background space-y-4 font-primary text-foreground rounded-md">
+    <div className="fixed bottom-0 left-0 max-w-md px-5 py-4 m-2 shadow-md shadow-black/25 z-[9998] bg-background space-y-4 font-primary text-foreground rounded-md">
       <h3 className="m-0 text-lg font-semibold font-primary md:text-xl">
         {banner.title}
       </h3>
