@@ -65,7 +65,7 @@ To configure Leckerli, attach a `leckerliSettings` object to your `window`. Some
 
 Here are the settings that you can override:
 
-## `name`
+## Name `name`
 
 It's the name of your cookie.
 
