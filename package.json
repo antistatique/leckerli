@@ -11,7 +11,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "prepublishOnly": "yarn run build"
+    "prepublishOnly": "yarn run build && pinst --disable",
+    "lint:js": "eslint --ext js,jsx,ts,tsx ./ --max-warnings=0",
+    "fix:js": "eslint --ext js,jsx,ts,tsx ./ --max-warnings=0 --fix",
+    "postinstall": "husky install",
+    "postpublish": "pinst --enable"
   },
   "dependencies": {
     "@types/ramda": "^0.29.2",
@@ -23,11 +27,31 @@
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",
     "@types/js-cookie": "^3.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
     "autoprefixer": "^10.4.14",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.43.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-tailwind": "^0.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "pinst": "^3.0.0",
     "postcss": "^8.4.24",
     "postcss-prefixwrap": "^1.39.1",
+    "prettier": "^2.8.8",
     "tailwindcss": "^3.3.2",
-    "typescript": "^5.0.2",
+    "typescript": "^5.1.5",
     "vite": "^4.3.9"
   }
 }

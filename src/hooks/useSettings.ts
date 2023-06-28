@@ -1,10 +1,10 @@
+import cookies from 'js-cookie';
 import { isNil, isNotNil, mergeDeepRight } from 'ramda';
-import { create } from 'zustand'
+import { create } from 'zustand';
 
+import defaultSettings from '../defaultSettings.ts';
+import Cookie from '../types/cookie';
 import type Settings from '../types/settings';
-import Cookie from "../types/cookie";
-import defaultSettings from "../defaultSettings.ts";
-import cookies from "js-cookie";
 
 type SettingsStore = Settings & {
   choiceMade: boolean;
@@ -31,10 +31,13 @@ const initialCookie = cookies.get(initialState.name);
 // Set store's cookie value based on existing cookie or settings permissions
 initialState.cookie = isNotNil(initialCookie)
   ? JSON.parse(initialCookie)
-  : initialState.permissions.reduce((acc, val) => ({
-    ...acc,
-    [val.slug]: false,
-  }), initialState.baseData);
+  : initialState.permissions.reduce(
+      (acc, val) => ({
+        ...acc,
+        [val.slug]: false,
+      }),
+      initialState.baseData
+    );
 
 // With the existing cookie or not, set the choiceMade
 initialState.choiceMade = isNotNil(initialCookie);
@@ -57,24 +60,34 @@ const useSettings = create<SettingsStore>((set, getState) => ({
     );
 
     // Open banner by resseting choiceMade
-    document.addEventListener('leckerli:open-banner', () => getState().setChoice(false));
-    document.addEventListener('leckerli:close-banner', () => getState().setChoice(true));
+    document.addEventListener('leckerli:open-banner', () =>
+      getState().setChoice(false)
+    );
+    document.addEventListener('leckerli:close-banner', () =>
+      getState().setChoice(true)
+    );
 
     // Manage modal
-    document.addEventListener('leckerli:open-modal', () => getState().setModal(true));
-    document.addEventListener('leckerli:close-modal', () => getState().setModal(false));
+    document.addEventListener('leckerli:open-modal', () =>
+      getState().setModal(true)
+    );
+    document.addEventListener('leckerli:close-modal', () =>
+      getState().setModal(false)
+    );
   },
 
   // Manage banner display
-  setChoice: (value: boolean) => set(state => {
-    return { ...state, choiceMade: value };
-  }),
+  setChoice: (value: boolean) =>
+    set(state => ({ ...state, choiceMade: value })),
 
   // Manage modal display
-  setModal: (value: boolean) => set(state => {
-    document.dispatchEvent(new CustomEvent(`leckerli:modal-${value ? 'opened' : 'closed'}`));
-    return { ...state, settingsOpen: value };
-  }),
+  setModal: (value: boolean) =>
+    set(state => {
+      document.dispatchEvent(
+        new CustomEvent(`leckerli:modal-${value ? 'opened' : 'closed'}`)
+      );
+      return { ...state, settingsOpen: value };
+    }),
 
   // Set cookie permission(s)
   setPermissions: (slugs: string | string[], value: boolean) =>
@@ -83,7 +96,7 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
       const newCookie = state.permissions.reduce((acc, val) => {
         if (list.includes(val.slug)) {
-          acc[val.slug] =  value;
+          acc[val.slug] = value;
         } else {
           acc[val.slug] = state.cookie[val.slug] ?? false;
         }
@@ -107,7 +120,9 @@ const useSettings = create<SettingsStore>((set, getState) => ({
     set(state => {
       const newCookie = state.permissions.reduce((acc, val) => {
         if (slug === val.slug) {
-          acc[val.slug] =  isNotNil(state.cookie[val.slug]) ? !state.cookie[val.slug] : true;
+          acc[val.slug] = isNotNil(state.cookie[val.slug])
+            ? !state.cookie[val.slug]
+            : true;
         } else {
           acc[val.slug] = state.cookie[val.slug] ?? false;
         }

@@ -1,47 +1,56 @@
 import useSettings from '../hooks/useSettings';
 
 const Settings = () => {
-  const { permissions, cookie, togglePermission, banner, setModal }  = useSettings();
+  const { permissions, cookie, togglePermission, banner, setModal } =
+    useSettings();
 
   return (
-      <div class="fixed z-[9999] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-background text-foreground m-2 px-5 py-4 font-primary text-black rounded-md max-h-full">
-        <div class="space-y-6">
-          <h3 class="w-10/12 m-0 font-primary font-semibold text-xl md:text-2xl">
-            {banner.customise}
-          </h3>
+    <div className="fixed w-full max-w-md max-h-full px-5 py-4 m-2 text-black z-[9999] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background text-foreground font-primary rounded-md">
+      <div className="space-y-6">
+        <h3 className="w-10/12 m-0 text-xl font-semibold font-primary md:text-2xl">
+          {banner.customise}
+        </h3>
 
-          {permissions.map(({slug, title, description}) => (
-            <div key={`setting-${slug}`}>
-              <div class="flex items-start justify-between">
-                <h3 class="m-0 font-primary font-semibold text-lg">
-                  {title}
-                </h3>
+        {permissions.map(({ slug, title, description }) => (
+          <div key={`setting-${slug}`}>
+            <div className="flex items-start justify-between">
+              <h3 className="m-0 text-lg font-semibold font-primary">
+                {title}
+              </h3>
 
-                <button
-                  type="button"
-                  class={`${cookie[slug] ? 'bg-primary' : 'bg-gray-200'} relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 mt-0.5`}
-                  role="switch" aria-checked="false"
-                  onClick={() => togglePermission(slug)}
-                >
-                  <span class="sr-only">Toggle</span>
-                  <span aria-hidden="true"
-                    class={`${cookie[slug] ? 'translate-x-5' : 'translate-x-0'} pointer-events-none inline-block h-5 w-5 transform rounded-full bg-background shadow ring-0 transition duration-200 ease-in-out`}></span>
-                </button>
-              </div>
-
-              <p class="m-0 mt-2 leading-snug font-primary text-sm md:text-base">
-                {description}
-              </p>
+              <button
+                type="button"
+                className={`${
+                  cookie[slug] ? 'bg-primary' : 'bg-gray-200'
+                } relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 mt-0.5`}
+                role="switch"
+                aria-checked="false"
+                onClick={() => togglePermission(slug)}
+              >
+                <span className="sr-only">Toggle</span>
+                <span
+                  aria-hidden="true"
+                  className={`${
+                    cookie[slug] ? 'translate-x-5' : 'translate-x-0'
+                  } pointer-events-none inline-block h-5 w-5 transform rounded-full bg-background shadow ring-0 transition duration-200 ease-in-out`}
+                />
+              </button>
             </div>
-          ))}
-        </div>
-        <button
-          class="absolute top-0 right-0 w-8 h-8 mt-0 text-xl rounded-full"
-          onClick={() => setModal(false)}
-        >
-          &times;
-        </button>
+
+            <p className="m-0 mt-2 text-sm leading-snug font-primary md:text-base">
+              {description}
+            </p>
+          </div>
+        ))}
       </div>
+      <button
+        type="button"
+        className="absolute top-0 right-0 w-8 h-8 mt-0 text-xl rounded-full"
+        onClick={() => setModal(false)}
+      >
+        &times;
+      </button>
+    </div>
   );
 };
 
