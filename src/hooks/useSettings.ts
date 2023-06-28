@@ -49,6 +49,13 @@ const useSettings = create<SettingsStore>((set, getState) => ({
       cookies.set(getState().name, JSON.stringify(getState().cookie));
     }
 
+    // Emit initial event and data or null if the choice has not been made
+    document.dispatchEvent(
+      new CustomEvent('leckerli:initialised', {
+        detail: { cookie: getState().choiceMade ? getState().cookie : null },
+      })
+    );
+
     // Open banner by resseting choiceMade
     document.addEventListener('leckerli:open-banner', () => getState().setChoice(false));
     document.addEventListener('leckerli:close-banner', () => getState().setChoice(true));
@@ -85,7 +92,12 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
       cookies.set(state.name, JSON.stringify(newCookie));
 
-      document.dispatchEvent(new CustomEvent('leckerli:permissions-updated'));
+      // Emit event and data
+      document.dispatchEvent(
+        new CustomEvent('leckerli:permissions-updated', {
+          detail: { cookie: newCookie },
+        })
+      );
 
       return { ...state, choiceMade: true, cookie: newCookie };
     }),
@@ -104,7 +116,12 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
       cookies.set(state.name, JSON.stringify(newCookie));
 
-      document.dispatchEvent(new CustomEvent('leckerli:permissions-updated'));
+      // Emit event and data
+      document.dispatchEvent(
+        new CustomEvent('leckerli:permissions-updated', {
+          detail: { cookie: newCookie },
+        })
+      );
 
       return { ...state, choiceMade: true, cookie: newCookie };
     }),
