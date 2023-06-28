@@ -11,40 +11,30 @@
     <h1>Your website here 🤗</h1>
 
 
-
+    
 
     <script>
-      window.leckerliSettings.banner = {
-        baseData: {
-          consentid: 'b638a4a9-a846-475a-a29b-d2bb596cb735',
-        },
-        banner: {
-          title: 'Nous respectons votre vie privée.',
-          description: 'Nous utilisons des cookies pour améliorer votre expérience de navigation, diffuser des publicités ou des contenus personnalisés et analyser notre trafic. En cliquant sur « Tout accepter », vous consentez à notre utilisation des cookies.',
-          accept: 'Accepter tout',
-          reject: 'Tout rejeter',
-          customise: 'Personnaliser',
-        },
-        permissions: [
-          {
-            slug: 'ga',
-            title: 'Google analytics',
-            description: 'To track all your actions.'
+      // To listen the initialisation
+      document.addEventListener('leckerli:initialised', (event) => {
+        // to get cookie data OR null if the user's choice has not been made
+        console.log('init', event.detail.cookie);
+      });
 
-          },
-          {
-            slug: 'settings',
-            title: 'Preferences',
-            description: 'Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in.'
+      // To listen to the permissions / cookie's updates
+      document.addEventListener('leckerli:permissions-updated', (event) => {
+        // to get cookie data
+        console.log('update', event.detail.cookie);
+      });
 
-          }
-        ],
-      }
-      */
-
-      document.addEventListener('leckerli:modal-closed', () => console.log('modal closed'))
-      document.addEventListener('leckerli:modal-opened', () => console.log('modal opened'))
-      document.addEventListener('leckerli:permissions-updated', () => console.log('permissions updated'))
+      // To listen the modal states
+      document.addEventListener('leckerli:modal-opened', () => {
+        // react to modal opened
+        console.log('modal opened')
+      });
+      document.addEventListener('leckerli:modal-closed', () => {
+        // react to modal closed
+        console.log('modal closed')
+      });
     </script>
 
     <style>

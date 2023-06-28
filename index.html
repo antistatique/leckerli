@@ -9,45 +9,9 @@
     <h1>Your website here 🤗</h1>
 
 
-    <!-- <script defer type="module" src="/src/index.tsx"></script>-->
+    <script defer type="module" src="/src/index.tsx"></script>
 
     <script>
-      window.leckerliSettings = {};
-
-      window.leckerliSettings.banner = {
-          title: 'Nous respectons votre vie privée.',
-          description: 'Nous utilisons des cookies pour améliorer votre expérience de navigation, diffuser des publicités ou des contenus personnalisés et analyser notre trafic. En cliquant sur « Tout accepter », vous consentez à notre utilisation des cookies.',
-          accept: 'Accepter tout',
-          reject: 'Tout rejeter',
-          customise: 'Personnaliser',
-      };
-    </script>
-
-    <script>
-      window.leckerliSettings.permissions = [
-        {
-          slug: 'ga',
-          title: 'Google analytics',
-          description: 'To track all your actions.'
-
-        },
-        {
-          slug: 'settings',
-          title: 'Preferences',
-          description: 'Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in.'
-
-        }
-      ];
-
-      const leckerliScript = document.createElement('script');
-      leckerliScript.src = '//www.unpkg.com/@antistatique/leckerli/dist/assets/leckerli.min.js';
-      document.body.appendChild(leckerliScript);
-
-      const leckerliStyles = document.createElement('link');
-      leckerliStyles.rel = 'stylesheet';
-      leckerliStyles.href = '//www.unpkg.com/@antistatique/leckerli/dist/assets/leckerli.min.css';
-      document.head.appendChild(leckerliStyles);
-
       // To listen the initialisation
       document.addEventListener('leckerli:initialised', (event) => {
         // to get cookie data OR null if the user's choice has not been made
