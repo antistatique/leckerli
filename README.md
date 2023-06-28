@@ -65,11 +65,11 @@ To configure Leckerli, attach a `leckerliSettings` object to your `window`. Some
 
 Here are the settings that you can override:
 
-## Name `name`
+### name
 
-It's the name of your cookie.
+It's the `name` of your cookie.
 
-## `banner`
+### banner
 
 `banner` is an object with the text content to override. By default:
 
@@ -87,9 +87,9 @@ window.leckerliSettings = {
 }
 ```
 
-## `permissions`
+### permissions
 
-The core of Leckerli, it's all the permissions that you want to manage. By default:
+The core of Leckerli, it's all the `permissions` that you want to manage. By default:
 
 ```ts
 window.leckerliSettings = {
@@ -105,7 +105,7 @@ window.leckerliSettings = {
 }
 ```
 
-## `baseData`
+### baseData
 
 `baseData` is an object of any kind that **will be passed to the final cookie** as well. For example for store consent-id of some sort.
 
