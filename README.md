@@ -69,6 +69,10 @@ Here are the settings that you can override:
 
 It's the `name` of your cookie.
 
+### domain
+
+It's the `domain` of your cookie, by default the current website (`window.location.hostname`).
+
 ### banner
 
 `banner` is an object with the text content to override. By default:
