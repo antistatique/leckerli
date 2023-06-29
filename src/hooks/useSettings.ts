@@ -63,8 +63,9 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
     if (isNil(initialCookie) && state.choiceMade) {
       cookies.set(state.name, JSON.stringify(state.cookie), cookieConfig);
-      if (state.enableGtmConsent) gtmConsent(state);
     }
+
+    if (state.choiceMade && state.enableGtmConsent) gtmConsent(state);
 
     // Emit initial event and data or null if the choice has not been made
     document.dispatchEvent(
