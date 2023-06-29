@@ -99,7 +99,7 @@ const useSettings = create<SettingsStore>((set, getState) => ({
     cookies.set(state.name, JSON.stringify(newCookie), cookieConfig);
 
     // if enabled, send to datalayer
-    if (state.enableGtmConsent) gtmConsent(state);
+    if (state.enableGtmConsent) gtmConsent({ ...state, cookie: newCookie });
 
     // Emit event and data
     document.dispatchEvent(
