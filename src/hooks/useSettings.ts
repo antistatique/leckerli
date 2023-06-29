@@ -53,11 +53,10 @@ initialState.choiceMade = isNotNil(initialCookie);
 
 window.dataLayer = window.dataLayer || [];
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const gtag = (_key: string, _key2: string, _perms: Record<string, string>) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+function gtag(_key: string, _key2: string, _perms: Record<string, string>) {
+  // eslint-disable-next-line prefer-rest-params
   window.dataLayer.push(arguments);
-};
+}
 
 // Deliver the hook
 const useSettings = create<SettingsStore>((set, getState) => ({
