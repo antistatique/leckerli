@@ -51,6 +51,18 @@ initialState.cookie = isNotNil(initialCookie)
 // With the existing cookie or not, set the choiceMade
 initialState.choiceMade = isNotNil(initialCookie);
 
+let initialisationCallbackTest = (c: Cookie) => c;
+window.leckerliInitialisation = (cb: () => void) => {
+  console.log('initialisationCallbackTest assignment');
+  initialisationCallbackTest = cb;
+};
+
+let updateCallbackTest = (c: Cookie) => c;
+window.leckerliUpdate = (cb: () => void) => {
+  console.log('updateCallbackTest assignment');
+  updateCallbackTest = cb;
+};
+
 // Deliver the hook
 const useSettings = create<SettingsStore>((set, getState) => ({
   ...initialState,
@@ -62,6 +74,8 @@ const useSettings = create<SettingsStore>((set, getState) => ({
     if (isNil(initialCookie) && state.choiceMade) {
       cookies.set(state.name, JSON.stringify(state.cookie), cookieConfig);
     }
+
+    initialisationCallbackTest(state.cookie);
 
     // Emit initial event and data or null if the choice has not been made
     document.dispatchEvent(
@@ -121,6 +135,8 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
       cookies.set(state.name, JSON.stringify(newCookie), cookieConfig);
 
+      updateCallbackTest(state.cookie);
+
       // Emit event and data
       document.dispatchEvent(
         new CustomEvent('leckerli:permissions-updated', {
@@ -151,6 +167,8 @@ const useSettings = create<SettingsStore>((set, getState) => ({
       }, state.baseData);
 
       cookies.set(state.name, JSON.stringify(newCookie), cookieConfig);
+
+      updateCallbackTest(state.cookie);
 
       // Emit event and data
       document.dispatchEvent(
