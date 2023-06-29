@@ -51,6 +51,14 @@ initialState.cookie = isNotNil(initialCookie)
 // With the existing cookie or not, set the choiceMade
 initialState.choiceMade = isNotNil(initialCookie);
 
+window.dataLayer = window.dataLayer || [];
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const gtag = (_key: string, _key2: string, _perms: Record<string, string>) => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  window.dataLayer.push(arguments);
+};
+
 // Deliver the hook
 const useSettings = create<SettingsStore>((set, getState) => ({
   ...initialState,
@@ -64,6 +72,18 @@ const useSettings = create<SettingsStore>((set, getState) => ({
         cookieConfig
       );
     }
+
+    gtag(
+      'consent',
+      'update',
+      getState().permissions.reduce(
+        (acc, val) => ({
+          ...acc,
+          [val.slug]: getState().cookie[val.slug] ? 'granted' : 'denied',
+        }),
+        {}
+      )
+    );
 
     // Emit initial event and data or null if the choice has not been made
     document.dispatchEvent(
@@ -118,6 +138,18 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
       cookies.set(state.name, JSON.stringify(newCookie), cookieConfig);
 
+      gtag(
+        'consent',
+        'update',
+        state.permissions.reduce(
+          (acc, val) => ({
+            ...acc,
+            [val.slug]: newCookie[val.slug] ? 'granted' : 'denied',
+          }),
+          {}
+        )
+      );
+
       // Emit event and data
       document.dispatchEvent(
         new CustomEvent('leckerli:permissions-updated', {
@@ -143,6 +175,18 @@ const useSettings = create<SettingsStore>((set, getState) => ({
       }, state.baseData);
 
       cookies.set(state.name, JSON.stringify(newCookie), cookieConfig);
+
+      gtag(
+        'consent',
+        'update',
+        state.permissions.reduce(
+          (acc, val) => ({
+            ...acc,
+            [val.slug]: newCookie[val.slug] ? 'granted' : 'denied',
+          }),
+          {}
+        )
+      );
 
       // Emit event and data
       document.dispatchEvent(
