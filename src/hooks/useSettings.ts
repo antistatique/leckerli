@@ -57,26 +57,22 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
   // Write cookie if not exist and setup eventListeners
   init: () => {
-    if (isNil(initialCookie) && getState().choiceMade) {
-      cookies.set(
-        getState().name,
-        JSON.stringify(getState().cookie),
-        cookieConfig
-      );
+    const state = getState();
+
+    if (isNil(initialCookie) && state.choiceMade) {
+      cookies.set(state.name, JSON.stringify(state.cookie), cookieConfig);
     }
 
     // Emit initial event and data or null if the choice has not been made
-    const eventDetail = {
-      detail: { cookie: getState().choiceMade ? getState().cookie : null },
-    };
-
     document.dispatchEvent(
-      new CustomEvent('leckerli:initialised', eventDetail)
+      new CustomEvent('leckerli:initialised', {
+        detail: { cookie: state.choiceMade ? state.cookie : null },
+      })
     );
 
-    const state = getState();
-    if (state && state.onInitialization) {
-      state.onInitialization(eventDetail);
+    // Pass cookie to callback method if defined
+    if (isNotNil(state.initialisationCallback)) {
+      state.initialisationCallback(state.cookie);
     }
 
     // Open banner by resseting choiceMade
@@ -126,16 +122,15 @@ const useSettings = create<SettingsStore>((set, getState) => ({
       cookies.set(state.name, JSON.stringify(newCookie), cookieConfig);
 
       // Emit event and data
-      const eventDetail = {
-        detail: { cookie: newCookie },
-      };
-
       document.dispatchEvent(
-        new CustomEvent('leckerli:permissions-updated', eventDetail)
+        new CustomEvent('leckerli:permissions-updated', {
+          detail: { cookie: newCookie },
+        })
       );
 
-      if (state.onPermissionsUpdate) {
-        state.onPermissionsUpdate(eventDetail);
+      // Pass cookie to callback method if defined
+      if (isNotNil(state.updateCallback)) {
+        state.updateCallback(state.cookie);
       }
 
       return { ...state, choiceMade: true, cookie: newCookie };
@@ -163,6 +158,11 @@ const useSettings = create<SettingsStore>((set, getState) => ({
           detail: { cookie: newCookie },
         })
       );
+
+      // Pass cookie to callback method if defined
+      if (isNotNil(state.updateCallback)) {
+        state.updateCallback(state.cookie);
+      }
 
       return { ...state, choiceMade: true, cookie: newCookie };
     }),

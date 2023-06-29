@@ -1,5 +1,7 @@
 import defaultSettings from '../defaultSettings.ts';
 
+import Cookie from './cookie.ts';
+
 type Settings = typeof defaultSettings & {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   baseData: any;
@@ -8,10 +10,8 @@ type Settings = typeof defaultSettings & {
     title: string;
     description: string;
   }[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onInitialization: ((event: any) => void) | undefined;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onPermissionsUpdate: ((event: any) => void) | undefined;
+  initialisationCallback?: (cookie: Cookie) => void;
+  updateCallback?: (cookie: Cookie) => void;
 };
 
 export default Settings;
