@@ -12,9 +12,10 @@ type SettingsStore = Settings & {
   settingsOpen: boolean;
   cookie: Cookie;
   init: () => void;
+  propagate: (cookie: Cookie) => void;
   setChoice: (value: boolean) => void;
   setModal: (value: boolean) => void;
-  setPermissions: (slugs: string | string[], value: boolean) => void;
+  setPermissions: (permissions: Record<string, boolean>) => void;
   togglePermission: (slugs: string) => void;
   acceptAll: () => void;
   rejectAll: () => void;
@@ -89,6 +90,24 @@ const useSettings = create<SettingsStore>((set, getState) => ({
     );
   },
 
+  // Propagate new cookie values
+  propagate(newCookie: Cookie) {
+    const state = getState();
+
+    // Update cookie
+    cookies.set(state.name, JSON.stringify(newCookie), cookieConfig);
+
+    // if enabled, send to datalayer
+    if (state.enableGtmConsent) gtmConsent(state);
+
+    // Emit event and data
+    document.dispatchEvent(
+      new CustomEvent('leckerli:permissions-updated', {
+        detail: { cookie: newCookie },
+      })
+    );
+  },
+
   // Manage banner display
   setChoice: (value: boolean) =>
     set(state => ({ ...state, choiceMade: value })),
@@ -103,29 +122,17 @@ const useSettings = create<SettingsStore>((set, getState) => ({
     }),
 
   // Set cookie permission(s)
-  setPermissions: (slugs: string | string[], value: boolean) =>
+  setPermissions: (permissions: Record<string, boolean>) =>
     set(state => {
-      const list = Array.isArray(slugs) ? slugs : [slugs];
-
-      const newCookie = state.permissions.reduce((acc, val) => {
-        if (list.includes(val.slug)) {
-          acc[val.slug] = value;
-        } else {
-          acc[val.slug] = state.cookie[val.slug] ?? false;
-        }
-        return acc;
-      }, state.baseData);
-
-      cookies.set(state.name, JSON.stringify(newCookie), cookieConfig);
-
-      if (state.enableGtmConsent) gtmConsent(state);
-
-      // Emit event and data
-      document.dispatchEvent(
-        new CustomEvent('leckerli:permissions-updated', {
-          detail: { cookie: newCookie },
-        })
+      const newCookie = state.permissions.reduce(
+        (acc, val) => ({
+          ...acc,
+          [val.slug]: permissions[val.slug] ?? false,
+        }),
+        state.baseData
       );
+
+      state.propagate(newCookie);
 
       return { ...state, choiceMade: true, cookie: newCookie };
     }),
@@ -144,16 +151,7 @@ const useSettings = create<SettingsStore>((set, getState) => ({
         return acc;
       }, state.baseData);
 
-      cookies.set(state.name, JSON.stringify(newCookie), cookieConfig);
-
-      if (state.enableGtmConsent) gtmConsent(state);
-
-      // Emit event and data
-      document.dispatchEvent(
-        new CustomEvent('leckerli:permissions-updated', {
-          detail: { cookie: newCookie },
-        })
-      );
+      state.propagate(newCookie);
 
       return { ...state, choiceMade: true, cookie: newCookie };
     }),
@@ -161,16 +159,20 @@ const useSettings = create<SettingsStore>((set, getState) => ({
   // All permission at true shorthand
   acceptAll: () => {
     getState().setPermissions(
-      getState().permissions.map(i => i.slug),
-      true
+      getState().permissions.reduce(
+        (acc, val) => ({ ...acc, [val.slug]: true }),
+        {}
+      )
     );
   },
 
   // All permission at false shorthand
   rejectAll: () => {
     getState().setPermissions(
-      getState().permissions.map(i => i.slug),
-      false
+      getState().permissions.reduce(
+        (acc, val) => ({ ...acc, [val.slug]: false }),
+        {}
+      )
     );
   },
 }));

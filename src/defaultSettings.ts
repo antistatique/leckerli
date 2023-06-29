@@ -7,6 +7,7 @@ const defaultSettings = {
     accept: 'Accept all',
     reject: 'Deny',
     customise: 'Customize',
+    save: 'Save',
   },
   permissions: [
     {
