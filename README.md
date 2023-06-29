@@ -86,6 +86,7 @@ window.leckerliSettings = {
     accept: 'Accept all',
     reject: 'Deny',
     customise: 'Customize',
+    save: 'Save'
   },
   //...
 }
@@ -113,7 +114,13 @@ window.leckerliSettings = {
 
 `baseData` is an object of any kind that **will be passed to the final cookie** as well. For example for store consent-id of some sort.
 
+### enableGtmConsent
+
+`enableGtmConsent` (`false` by default) enables the **consent update** based on the permissions's slugs, in the `window.dataLayer`. It simplifies Google Tag Manager integration.
+
 ### For example
+
+You could have something like:
 
 ```html
 <script>
@@ -128,6 +135,7 @@ window.leckerliSettings = {
       accept: 'Accepter tout',
       reject: 'Tout rejeter',
       customise: 'Personnaliser',
+      save: 'Sauvegarder'
     },
     permissions: [
       {

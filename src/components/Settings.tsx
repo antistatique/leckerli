@@ -1,8 +1,11 @@
+import { useState } from 'preact/hooks';
+
 import useSettings from '../hooks/useSettings';
 
 const Settings = () => {
-  const { permissions, cookie, togglePermission, banner, setModal } =
+  const { permissions, cookie, setPermissions, banner, setModal } =
     useSettings();
+  const [cookieProxy, setCookieProxy] = useState(cookie);
 
   return (
     <div className="fixed bottom-0 left-0 w-full max-w-lg max-h-full px-5 py-4 m-2 text-black shadow-md shadow-black/25 z-[9999] bg-background text-foreground font-primary rounded-md">
@@ -21,17 +24,19 @@ const Settings = () => {
               <button
                 type="button"
                 className={`${
-                  cookie[slug] ? 'bg-primary' : 'bg-gray-200'
+                  cookieProxy[slug] ? 'bg-primary' : 'bg-gray-200'
                 } relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 mt-0.5`}
                 role="switch"
                 aria-checked="false"
-                onClick={() => togglePermission(slug)}
+                onClick={() =>
+                  setCookieProxy({ ...cookieProxy, [slug]: !cookieProxy[slug] })
+                }
               >
                 <span className="sr-only">Toggle</span>
                 <span
                   aria-hidden="true"
                   className={`${
-                    cookie[slug] ? 'translate-x-5' : 'translate-x-0'
+                    cookieProxy[slug] ? 'translate-x-5' : 'translate-x-0'
                   } pointer-events-none inline-block h-5 w-5 transform rounded-full bg-background shadow ring-0 transition duration-200 ease-in-out`}
                 />
               </button>
@@ -42,6 +47,19 @@ const Settings = () => {
             </p>
           </div>
         ))}
+
+        <div className="pt-4">
+          <button
+            type="button"
+            className="px-2 mr-2 text-sm font-semibold border-2 border-solid rounded bg-primary font-primary text-background md:px-3.5 py-1.5 md:py-2.5 border-primary hover:bg-primary-hover hover:border-primary-hover active:bg-primary-active active:border-primary-active transition-colors"
+            onClick={() => {
+              setPermissions(cookieProxy);
+              setModal(false);
+            }}
+          >
+            {banner.save}
+          </button>
+        </div>
       </div>
       <button
         type="button"

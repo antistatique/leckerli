@@ -7,6 +7,7 @@ const defaultSettings = {
     accept: 'Accept all',
     reject: 'Deny',
     customise: 'Customize',
+    save: 'Save',
   },
   permissions: [
     {
@@ -21,6 +22,7 @@ const defaultSettings = {
   choiceMade: false,
   settingsOpen: false,
   domain: window.location.hostname,
+  enableGtmConsent: false,
 };
 
 export default defaultSettings;
