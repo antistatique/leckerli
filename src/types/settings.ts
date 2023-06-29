@@ -8,6 +8,7 @@ type Settings = typeof defaultSettings & {
     title: string;
     description: string;
   }[];
+  enableGtmConsent: boolean;
 };
 
 export default Settings;

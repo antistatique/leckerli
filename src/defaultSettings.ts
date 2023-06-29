@@ -21,6 +21,7 @@ const defaultSettings = {
   choiceMade: false,
   settingsOpen: false,
   domain: window.location.hostname,
+  enableGtmConsent: false,
 };
 
 export default defaultSettings;

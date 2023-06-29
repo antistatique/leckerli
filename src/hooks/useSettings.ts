@@ -3,8 +3,9 @@ import { isNil, isNotNil, mergeDeepRight } from 'ramda';
 import { create } from 'zustand';
 
 import defaultSettings from '../defaultSettings.ts';
-import Cookie from '../types/cookie';
+import type Cookie from '../types/cookie';
 import type Settings from '../types/settings';
+import gtmConsent from '../utils/gtmConsent.ts';
 
 type SettingsStore = Settings & {
   choiceMade: boolean;
@@ -51,43 +52,23 @@ initialState.cookie = isNotNil(initialCookie)
 // With the existing cookie or not, set the choiceMade
 initialState.choiceMade = isNotNil(initialCookie);
 
-window.dataLayer = window.dataLayer || [];
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function gtag(_key: string, _key2: string, _perms: Record<string, string>) {
-  // eslint-disable-next-line prefer-rest-params
-  window.dataLayer.push(arguments);
-}
-
 // Deliver the hook
 const useSettings = create<SettingsStore>((set, getState) => ({
   ...initialState,
 
   // Write cookie if not exist and setup eventListeners
   init: () => {
-    if (isNil(initialCookie) && getState().choiceMade) {
-      cookies.set(
-        getState().name,
-        JSON.stringify(getState().cookie),
-        cookieConfig
-      );
-    }
+    const state = getState();
 
-    gtag(
-      'consent',
-      'update',
-      getState().permissions.reduce(
-        (acc, val) => ({
-          ...acc,
-          [val.slug]: getState().cookie[val.slug] ? 'granted' : 'denied',
-        }),
-        {}
-      )
-    );
+    if (isNil(initialCookie) && state.choiceMade) {
+      cookies.set(state.name, JSON.stringify(state.cookie), cookieConfig);
+      if (state.enableGtmConsent) gtmConsent(state);
+    }
 
     // Emit initial event and data or null if the choice has not been made
     document.dispatchEvent(
       new CustomEvent('leckerli:initialised', {
-        detail: { cookie: getState().choiceMade ? getState().cookie : null },
+        detail: { cookie: state.choiceMade ? state.cookie : null },
       })
     );
 
@@ -137,17 +118,7 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
       cookies.set(state.name, JSON.stringify(newCookie), cookieConfig);
 
-      gtag(
-        'consent',
-        'update',
-        state.permissions.reduce(
-          (acc, val) => ({
-            ...acc,
-            [val.slug]: newCookie[val.slug] ? 'granted' : 'denied',
-          }),
-          {}
-        )
-      );
+      if (state.enableGtmConsent) gtmConsent(state);
 
       // Emit event and data
       document.dispatchEvent(
@@ -175,17 +146,7 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
       cookies.set(state.name, JSON.stringify(newCookie), cookieConfig);
 
-      gtag(
-        'consent',
-        'update',
-        state.permissions.reduce(
-          (acc, val) => ({
-            ...acc,
-            [val.slug]: newCookie[val.slug] ? 'granted' : 'denied',
-          }),
-          {}
-        )
-      );
+      if (state.enableGtmConsent) gtmConsent(state);
 
       // Emit event and data
       document.dispatchEvent(
