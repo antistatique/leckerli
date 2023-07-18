@@ -1,7 +1,9 @@
+import { isEmpty } from 'ramda';
+
 import useSettings from '../hooks/useSettings';
 
 const Banner = () => {
-  const { banner, acceptAll, rejectAll, setModal } = useSettings();
+  const { banner, acceptAll, rejectAll, setModal, permissions } = useSettings();
 
   return (
     <div className="fixed bottom-0 left-0 max-w-md px-5 py-4 m-2 shadow-md shadow-black/25 z-[9998] bg-background space-y-4 font-primary text-foreground rounded-md">
@@ -14,13 +16,15 @@ const Banner = () => {
       </p>
 
       <div className="pt-2 space-y-2">
-        <button
-          type="button"
-          className="px-2 mr-2 text-sm font-semibold border-2 border-solid rounded bg-background font-primary text-primary md:px-3.5 py-1.5 md:py-2.5 border-primary hover:border-primary-hover hover:text-primary-hover active:border-primary-active active:text-primary-active transition-colors"
-          onClick={() => setModal(true)}
-        >
-          {banner.customise}
-        </button>
+        {!isEmpty(permissions) && (
+          <button
+            type="button"
+            className="px-2 mr-2 text-sm font-semibold border-2 border-solid rounded bg-background font-primary text-primary md:px-3.5 py-1.5 md:py-2.5 border-primary hover:border-primary-hover hover:text-primary-hover active:border-primary-active active:text-primary-active transition-colors"
+            onClick={() => setModal(true)}
+          >
+            {banner.customise}
+          </button>
+        )}
         <button
           type="button"
           className="px-2 mr-2 text-sm font-semibold border-2 border-solid rounded bg-background font-primary text-primary md:px-3.5 py-1.5 md:py-2.5 border-primary hover:border-primary-hover hover:text-primary-hover active:border-primary-active active:text-primary-active transition-colors"

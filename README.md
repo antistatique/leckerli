@@ -110,6 +110,16 @@ window.leckerliSettings = {
 }
 ```
 
+if the `permissions` setting is set to an empty array, the "customize" button won't be shown.
+
+```ts
+window.leckerliSettings = {
+  //...
+  permissions: [],
+  //...
+}
+```
+
 ### baseData
 
 `baseData` is an object of any kind that **will be passed to the final cookie** as well. For example for store consent-id of some sort.
