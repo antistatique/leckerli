@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.1] - 2023-07-19
+## [1.1.0] - 2023-07-19
 ### Added
 - Add classes to override default banner style
 - Add cookie expires property and possiblity to override it
