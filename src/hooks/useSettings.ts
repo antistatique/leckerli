@@ -29,7 +29,7 @@ const initialState = mergeDeepRight(
 
 // Build the expiration date
 const expirationDate = new Date();
-expirationDate.setMonth((new Date().getMonth() % 12) + 1);
+expirationDate.setMonth(expirationDate.getMonth() + 1);
 
 // Define cookie configuration
 const cookieConfig: {
