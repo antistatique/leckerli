@@ -73,6 +73,10 @@ It's the `name` of your cookie.
 
 It's the `domain` of your cookie, by default the current website (`window.location.hostname`).
 
+### expires
+
+It's the `expires` of your cookie, by default it is set for a month from the current day. It should be either a Date or a number.
+
 ### banner
 
 `banner` is an object with the text content to override. By default:

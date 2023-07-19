@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Add classes to override default banner style
+- Add cookie expires property and possiblity to override it
 
 ### Changed
 - Ensure title, description and customise btn are optionnal elements
