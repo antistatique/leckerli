@@ -1,5 +1,5 @@
+import DOMPurify from 'dompurify';
 import { isEmpty } from 'ramda';
-import sanitize from 'sanitize-html';
 
 import useSettings from '../hooks/useSettings';
 
@@ -25,12 +25,7 @@ const Banner = () => {
     'a',
     'div',
   ];
-  const allowedAttributes = {
-    a: ['href', 'target'],
-  };
-  const allowedClasses = {
-    '*': ['inter_titre'],
-  };
+  const allowedAttributes = ['href', 'target'];
 
   return (
     <div className="fixed bottom-0 left-0 max-w-md px-5 py-4 m-2 shadow-md shadow-black/25 z-[9998] bg-background space-y-4 font-primary text-foreground rounded-md banner-wrapper">
@@ -45,10 +40,10 @@ const Banner = () => {
           className="m-0 text-sm leading-snug font-primary md:text-base banner-description"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
-            __html: sanitize(banner.description, {
-              allowedTags,
-              allowedAttributes,
-              allowedClasses,
+            __html: DOMPurify.sanitize(banner.description, {
+              USE_PROFILES: { html: true },
+              ALLOWED_TAGS: allowedTags,
+              ALLOWED_ATTR: allowedAttributes,
             }),
           }}
         />
