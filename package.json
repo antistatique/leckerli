@@ -1,6 +1,6 @@
 {
   "name": "@antistatique/leckerli",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Lightweight and customisable GDPR cookie consent manager",
   "private": false,
   "repository": "https://github.com/antistatique/leckerli",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@types/ramda": "^0.29.2",
+    "dompurify": "^3.0.5",
     "js-cookie": "^3.0.5",
     "preact": "^10.13.2",
     "ramda": "^0.29.0",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",
+    "@types/dompurify": "^3.0.2",
     "@types/js-cookie": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
