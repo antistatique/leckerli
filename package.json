@@ -22,11 +22,13 @@
     "js-cookie": "^3.0.5",
     "preact": "^10.13.2",
     "ramda": "^0.29.0",
+    "sanitize-html": "^2.11.0",
     "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",
     "@types/js-cookie": "^3.0.3",
+    "@types/sanitize-html": "^2.9.0",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "autoprefixer": "^10.4.14",

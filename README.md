@@ -92,6 +92,31 @@ window.leckerliSettings = {
 }
 ```
 
+if the `title` or `description` are not provided, it won't be shown.
+
+The `description` can contain markup in a restricted way: only the following tags are allowed:
+
+```ts
+const allowedTags = [
+  'b',
+  'i',
+  'em',
+  'strong',
+  'p',
+  'ul',
+  'li',
+  'ol',
+  'span',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'a',
+  'div',
+]
+```
+
 ### permissions
 
 The core of Leckerli, it's all the `permissions` that you want to manage. By default:
@@ -265,6 +290,18 @@ You can theme Leckerli with the following CSS custom properties (variables):
   }
 </style>
 ```
+
+To override any other style, you can use the following classes:
+
+| Class                   | Description                         |
+| ----------------------- | ----------------------------------- |
+| `.banner-wrapper`       | Override the banner display style   |
+| `.banner-title`         | Override the title style            |
+| `.banner-description`   | Override the description style      |
+| `.banner-btns`          | Override the buttons display style  |
+| `.banner-btn-customise` | Override the customize button style |
+| `.banner-btn-accept`    | Override the accept button style    |
+| `.banner-btn-reject`    | Override the reject button style    |
 
 ## 🧑‍💻 Contribute
 
