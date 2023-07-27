@@ -1,6 +1,6 @@
 # 🍪 Leckerli
 
-> Lightweight (~16kB gzip) and customisable GDPR cookie manager
+> Lightweight (~23kB gzip) and customisable GDPR cookie manager
 
 ## 📗 Usage
 
