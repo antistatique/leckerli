@@ -21,7 +21,7 @@ const gtmConsent = (settings: Settings & { cookie: Cookie }) => {
     settings.permissions.reduce(
       (acc, val) => ({
         ...acc,
-        [val.slug]: settings.cookie[val.slug] ? 'granted' : 'denied',
+        [val]: settings.cookie[val] ? 'granted' : 'denied',
       }),
       {}
     )

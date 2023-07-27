@@ -3,8 +3,7 @@ import { useState } from 'preact/hooks';
 import useSettings from '../hooks/useSettings';
 
 const Settings = () => {
-  const { permissions, cookie, setPermissions, banner, setModal } =
-    useSettings();
+  const { cookie, setPermissions, banner, setModal } = useSettings();
   const [cookieProxy, setCookieProxy] = useState(cookie);
 
   return (
@@ -14,7 +13,7 @@ const Settings = () => {
           {banner.customise}
         </h3>
 
-        {permissions.map(({ slug, title, description }) => (
+        {banner.settings.map(({ slug, title, description }) => (
           <div key={`setting-${slug}`}>
             <div className="flex items-start justify-between">
               <h3 className="m-0 text-lg font-semibold font-primary">
