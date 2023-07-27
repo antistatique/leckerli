@@ -4,7 +4,7 @@ import { isEmpty } from 'ramda';
 import useSettings from '../hooks/useSettings';
 
 const Banner = () => {
-  const { banner, acceptAll, rejectAll, setModal, permissions } = useSettings();
+  const { banner, acceptAll, rejectAll, setModal } = useSettings();
 
   // Prevent the injection of unwanted HTML tags in the banner description
   const allowedTags = [
@@ -50,7 +50,7 @@ const Banner = () => {
       )}
 
       <div className="pt-2 space-y-2 banner-btns">
-        {!isEmpty(permissions) && (
+        {!isEmpty(banner.settings) && (
           <button
             type="button"
             className="px-2 mr-2 text-sm font-semibold border-2 border-solid rounded bg-background font-primary text-primary md:px-3.5 py-1.5 md:py-2.5 border-primary hover:border-primary-hover hover:text-primary-hover active:border-primary-active active:text-primary-active transition-colors banner-btn-customise"

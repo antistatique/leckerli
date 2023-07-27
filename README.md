@@ -128,23 +128,35 @@ The core of Leckerli, it's all the `permissions` that you want to manage. By def
 ```ts
 window.leckerliSettings = {
   //...
+  banner: {
+    //...
+    settings: [
+      {
+        slug: 'settings',
+        title: 'Preferences',
+        description: 'Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in.'
+      },
+    ],
+    //...
+  },
   permissions: [
-    {
-      slug: 'settings',
-      title: 'Preferences',
-      description: 'Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in.'
-    }
+    'settings',
   ],
   //...
 }
 ```
 
-if the `permissions` setting is set to an empty array, the "customize" button won't be shown.
+if the `banner.settings` array is set to an empty array, the "Customize" button won't be shown and "Accept All" button will set
+all `permissions` setting to true.
 
 ```ts
 window.leckerliSettings = {
   //...
-  permissions: [],
+  banner: {
+    //...
+    settings: [],
+    //...
+  },
   //...
 }
 ```
@@ -174,19 +186,23 @@ You could have something like:
       accept: 'Accepter tout',
       reject: 'Tout rejeter',
       customise: 'Personnaliser',
-      save: 'Sauvegarder'
+      save: 'Sauvegarder',
+      settings: [
+        {
+          slug: 'analytics_storage',
+          title: 'Google analytics',
+          description: 'Google Analytics permet de mesurer et d\'analyser le comportement des visiteurs d\'un site internet, en fournissant des données clés sur leur provenance, leur navigation et leur engagement, afin d\'aider à optimiser le site et à améliorer l\'expérience utilisateur.'
+        },
+        {
+          slug: 'personalization_storage',
+          title: 'Préférences',
+          description: 'Les cookies de préférence permettent à un site web de mémoriser des informations qui modifient le comportement ou l\'apparence du site, comme votre langue préférée ou la région dans laquelle vous vous trouvez.'
+        },
+      ],
     },
     permissions: [
-      {
-        slug: 'settings',
-        title: 'Préférences',
-        description: 'Les cookies de préférence permettent à un site web de mémoriser des informations qui modifient le comportement ou l\'apparence du site, comme votre langue préférée ou la région dans laquelle vous vous trouvez.'
-      },
-      {
-        slug: 'ga',
-        title: 'Google analytics',
-        description: 'Google Analytics permet de mesurer et d\'analyser le comportement des visiteurs d\'un site internet, en fournissant des données clés sur leur provenance, leur navigation et leur engagement, afin d\'aider à optimiser le site et à améliorer l\'expérience utilisateur.'
-      },
+      'analytics_storage',
+      'personalization_storage',
     ],
   }
 </script>
@@ -210,7 +226,7 @@ window.leckerliSettings.name = 'website-gdpr';
 window.leckerliSettings.baseData = {
   consentid: 'b638a4a9-a846-475a-a29b-d2bb596cb735',
 };
-window.leckerliSettings.permissions = [
+window.leckerliSettings.banner.settings = [
   {
     slug: 'settings',
     title: 'Préférences',
@@ -222,6 +238,10 @@ window.leckerliSettings.permissions = [
     description: 'Google Analytics permet de mesurer et d\'analyser le comportement des visiteurs d\'un site internet, en fournissant des données clés sur leur provenance, leur navigation et leur engagement, afin d\'aider à optimiser le site et à améliorer l\'expérience utilisateur.'
   },
 ];
+window.leckerliSettings.permissions = [
+  'analytics_storage',
+  'personalization_storage',
+];
 ```
 
 ## 🩻 Cookie structure
@@ -229,7 +249,7 @@ window.leckerliSettings.permissions = [
 With the default settings above, here is the value stored in our cookie:
 
 ```plain
-{%22settings%22:true}
+{%settings%22:true}
 ```
 
 And after a `JSON.parse()`:

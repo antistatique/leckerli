@@ -51,7 +51,7 @@ initialState.cookie = isNotNil(initialCookie)
   : initialState.permissions.reduce(
       (acc, val) => ({
         ...acc,
-        [val.slug]: false,
+        [val]: false,
       }),
       initialState.baseData
     );
@@ -134,7 +134,7 @@ const useSettings = create<SettingsStore>((set, getState) => ({
       const newCookie = state.permissions.reduce(
         (acc, val) => ({
           ...acc,
-          [val.slug]: permissions[val.slug] ?? false,
+          [val]: permissions[val] ?? false,
         }),
         state.baseData
       );
@@ -148,12 +148,10 @@ const useSettings = create<SettingsStore>((set, getState) => ({
   togglePermission: (slug: string) =>
     set(state => {
       const newCookie = state.permissions.reduce((acc, val) => {
-        if (slug === val.slug) {
-          acc[val.slug] = isNotNil(state.cookie[val.slug])
-            ? !state.cookie[val.slug]
-            : true;
+        if (slug === val) {
+          acc[val] = isNotNil(state.cookie[val]) ? !state.cookie[val] : true;
         } else {
-          acc[val.slug] = state.cookie[val.slug] ?? false;
+          acc[val] = state.cookie[val] ?? false;
         }
         return acc;
       }, state.baseData);
@@ -166,10 +164,7 @@ const useSettings = create<SettingsStore>((set, getState) => ({
   // All permission at true shorthand
   acceptAll: () => {
     getState().setPermissions(
-      getState().permissions.reduce(
-        (acc, val) => ({ ...acc, [val.slug]: true }),
-        {}
-      )
+      getState().permissions.reduce((acc, val) => ({ ...acc, [val]: true }), {})
     );
   },
 
@@ -177,7 +172,7 @@ const useSettings = create<SettingsStore>((set, getState) => ({
   rejectAll: () => {
     getState().setPermissions(
       getState().permissions.reduce(
-        (acc, val) => ({ ...acc, [val.slug]: false }),
+        (acc, val) => ({ ...acc, [val]: false }),
         {}
       )
     );
