@@ -5,7 +5,6 @@ import { create } from 'zustand';
 import defaultSettings from '../defaultSettings.ts';
 import type Cookie from '../types/cookie';
 import type Settings from '../types/settings';
-import gtmConsent from '../utils/gtmConsent.ts';
 
 type SettingsStore = Settings & {
   choiceMade: boolean;
@@ -71,8 +70,6 @@ const useSettings = create<SettingsStore>((set, getState) => ({
       cookies.set(state.name, JSON.stringify(state.cookie), cookieConfig);
     }
 
-    if (state.choiceMade && state.enableGtmConsent) gtmConsent(state);
-
     // Emit initial event and data or null if the choice has not been made
     document.dispatchEvent(
       new CustomEvent('leckerli:initialised', {
@@ -103,9 +100,6 @@ const useSettings = create<SettingsStore>((set, getState) => ({
 
     // Update cookie
     cookies.set(state.name, JSON.stringify(newCookie), cookieConfig);
-
-    // if enabled, send to datalayer
-    if (state.enableGtmConsent) gtmConsent({ ...state, cookie: newCookie });
 
     // Emit event and data
     document.dispatchEvent(

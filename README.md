@@ -28,22 +28,9 @@ To use leckerli into your website, simply add the following CSS/JavaScript in yo
 </html>
 ```
 
-### GTM approach with CDN
+### Google Tag Manager integration
 
-You can also inject a bit of JavaScript to your website to install Leckerli using Google Tag Manager:
-
-```js
-// For the CSS
-const leckerliStyles = document.createElement('link');
-leckerliStyles.rel = 'stylesheet';
-leckerliStyles.href = '//www.unpkg.com/@antistatique/leckerli/dist/assets/leckerli.min.css';
-document.head.appendChild(leckerliStyles);
-
-// For the JavaScript
-const leckerliScript = document.createElement('script');
-leckerliScript.src = '//www.unpkg.com/@antistatique/leckerli/dist/assets/leckerli.min.js';
-document.body.appendChild(leckerliScript);
-```
+GTM integration can use our custom tag template, see [GTM integration](./doc/GTM_INTEGRATION.md) for more information.
 
 ### Local files
 
@@ -165,10 +152,6 @@ window.leckerliSettings = {
 
 `baseData` is an object of any kind that **will be passed to the final cookie** as well. For example for store consent-id of some sort.
 
-### enableGtmConsent
-
-`enableGtmConsent` (`false` by default) enables the **consent update** based on the permissions's slugs, in the `window.dataLayer`. It simplifies Google Tag Manager integration.
-
 ### For example
 
 You could have something like:
@@ -206,42 +189,6 @@ You could have something like:
     ],
   }
 </script>
-```
-
-Feel free to split the configuration object if you want to set the banner translations in the template of your website and the rest in Google Tag Manager for example:
-
-```js
-// In your template
-window.leckerliSettings = {};
-window.leckerliSettings.banner = {
-  title: 'Nous respectons votre vie privée.',
-  description: 'Nous utilisons des cookies pour améliorer votre expérience de navigation, diffuser des publicités ou des contenus personnalisés et analyser notre trafic. En cliquant sur « Tout accepter », vous consentez à notre utilisation des cookies.',
-  accept: 'Accepter tout',
-  reject: 'Tout rejeter',
-  customise: 'Personnaliser',
-};
-
-// In GTM
-window.leckerliSettings.name = 'website-gdpr';
-window.leckerliSettings.baseData = {
-  consentid: 'b638a4a9-a846-475a-a29b-d2bb596cb735',
-};
-window.leckerliSettings.banner.settings = [
-  {
-    slug: 'settings',
-    title: 'Préférences',
-    description: 'Les cookies de préférence permettent à un site web de mémoriser des informations qui modifient le comportement ou l\'apparence du site, comme votre langue préférée ou la région dans laquelle vous vous trouvez.'
-  },
-  {
-    slug: 'ga',
-    title: 'Google analytics',
-    description: 'Google Analytics permet de mesurer et d\'analyser le comportement des visiteurs d\'un site internet, en fournissant des données clés sur leur provenance, leur navigation et leur engagement, afin d\'aider à optimiser le site et à améliorer l\'expérience utilisateur.'
-  },
-];
-window.leckerliSettings.permissions = [
-  'analytics_storage',
-  'personalization_storage',
-];
 ```
 
 ## 🩻 Cookie structure

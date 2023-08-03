@@ -4,7 +4,7 @@ type Settings = typeof defaultSettings & {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   baseData: any;
   permissions: string[];
-  enableGtmConsent: boolean;
+  enableGtmAutoLoad: boolean;
 };
 
 export default Settings;

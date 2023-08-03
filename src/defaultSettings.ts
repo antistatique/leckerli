@@ -23,7 +23,7 @@ const defaultSettings = {
   choiceMade: false,
   settingsOpen: false,
   domain: window.location.hostname,
-  enableGtmConsent: false,
+  enableGtmAutoLoad: false,
 };
 
 export default defaultSettings;
