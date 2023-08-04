@@ -12,11 +12,13 @@ const updateConsentState = require('updateConsentState');
 const DEFAULT_CONSENT_STATE = {
   ad_storage: 'denied',
   analytics_storage: 'denied',
-  functionality_storage: 'granted',
+  functionality_storage: 'denied',
   personalization_storage: 'denied',
-  security_storage: 'granted',
+  security_storage: 'denied',
 };
+
 const ALLOWED_CONSENT_STATE = Object.keys(DEFAULT_CONSENT_STATE);
+const CONSENT_UPDATE_CUSTOM_EVENT = 'leckerliConsentUpdate';
 const COOKIE_NAME = 'gtm-leckerli';
 const LECKERLI_JS_URL = 'https://www.unpkg.com/@antistatique/leckerli@1.1/dist/assets/leckerli-gtm.min.js'
 
@@ -98,7 +100,7 @@ const main = (data) => {
     updateLeckerliConsent(leckerliConsent);
 
     const dataLayerPush = createQueue('dataLayer');
-    dataLayerPush({'event': 'leckerliUpdate'});
+    dataLayerPush({'event': CONSENT_UPDATE_CUSTOM_EVENT});
   });
 };
 

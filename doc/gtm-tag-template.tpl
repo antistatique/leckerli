@@ -10,7 +10,7 @@
     "id": "brand_dummy",
     "displayName": ""
   },
-  "description": "",
+  "description": "The leckerli GTM integration compatible with leckerli version ~1.2.0. More information on leckerli repository : https://github.com/antistatique/leckerli",
   "containerContexts": [
     "WEB"
   ]
@@ -25,7 +25,7 @@ ___TEMPLATE_PARAMETERS___
     "name": "leckerliSettings",
     "displayName": "Leckerli Settings",
     "simpleValueType": true,
-    "defaultValue": "{}",
+    "defaultValue": "{\"permissions\": [\"ad_storage\", \"analytics_storage\", \"functionality_storage\", \"personalization_storage\", \"security_storag\"] }",
     "lineCount": 8,
     "help": "JSON format"
   },
@@ -108,13 +108,19 @@ const updateConsentState = require('updateConsentState');
 const DEFAULT_CONSENT_STATE = {
   ad_storage: 'denied',
   analytics_storage: 'denied',
-  functionality_storage: 'granted',
+  functionality_storage: 'denied',
   personalization_storage: 'denied',
-  security_storage: 'granted',
+  security_storage: 'denied',
 };
-const ALLOWED_CONSENT_STATE = Object.keys(DEFAULT_CONSENT_STATE);
-const COOKIE_NAME = 'leckerli';
 
+const ALLOWED_CONSENT_STATE = Object.keys(DEFAULT_CONSENT_STATE);
+const CONSENT_UPDATE_CUSTOM_EVENT = 'leckerliConsentUpdate';
+const COOKIE_NAME = 'gtm-leckerli';
+const LECKERLI_JS_URL = 'https://www.unpkg.com/@antistatique/leckerli@1.1/dist/assets/leckerli-gtm.min.js';
+
+/**
+ * Used to merge an object in another.
+ */
 const mergeObject = (target, source) => {
   Object.entries(source).reduce((hash, item) => {
     if (typeof item[1] === 'object') {
@@ -167,27 +173,30 @@ const main = (data) => {
   // Set data redaction settings
   // gtagSet('ads_data_redaction', data.ads_data_redaction);
 
-  // Check if cookie is set and run updateLeckerliConsent().
-  const consent = JSON.parse(getCookieValues(COOKIE_NAME));
+  // Prepare leckerli settings, merging website config with GTM config
+  const leckerliSettings = JSON.parse(data.leckerliSettings);
+  mergeObject(leckerliSettings, copyFromWindow('leckerliSettings') || {});
+  leckerliSettings.enableGtmAutoLoad = typeof data.autoInstall === 'undefined' || data.autoInstall;
+  leckerliSettings.name = COOKIE_NAME;
+
+  // Check if cookie is set and run updateLeckerliConsent()
+  const consent = JSON.parse(getCookieValues(leckerliSettings.name));
   if (typeof consent !== 'undefined') {
     updateLeckerliConsent(consent);
   }
 
   // Set leckerli settings
-  const leckerliSettings = JSON.parse(data.leckerliSettings);
-  leckerliSettings.enableGtmAutoLoad = typeof data.autoInstall === 'undefined' || data.autoInstall;
-  mergeObject(leckerliSettings, copyFromWindow('leckerliSettings') || {});
   setInWindow('leckerliSettings', leckerliSettings, true);
 
   // Inject script to load leckerli
-  injectScript('https://www.unpkg.com/@antistatique/leckerli/dist/assets/leckerli-gtm.min.js');
+  injectScript(LECKERLI_JS_URL);
 
   // Add event listener to trigger update when consent changes
   setInWindow('leckerliGTMUpdate', (leckerliConsent) => {
     updateLeckerliConsent(leckerliConsent);
 
     const dataLayerPush = createQueue('dataLayer');
-    dataLayerPush({'event': 'leckerliUpdate'});
+    dataLayerPush({'event': CONSENT_UPDATE_CUSTOM_EVENT});
   });
 };
 
@@ -441,7 +450,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://www.unpkg.com/@antistatique/leckerli/dist/assets/leckerli-gtm.min.js"
+                "string": "https://www.unpkg.com/@antistatique/leckerli*"
               }
             ]
           }
@@ -613,7 +622,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "leckerli"
+                "string": "gtm-leckerli"
               }
             ]
           }
@@ -635,4 +644,4 @@ scenarios: []
 
 ___NOTES___
 
-Created on 03/08/2023 16:18:08
+Created on 04/08/2023 09:54:08
