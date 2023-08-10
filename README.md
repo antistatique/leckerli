@@ -30,7 +30,7 @@ To use leckerli into your website, simply add the following CSS/JavaScript in yo
 
 ### Google Tag Manager
 
-For Google Tag Manager integration, you should use the leckerli custom tag template, see [GTM integration](./doc/GTM_INTEGRATION.md) for more information.
+For Google Tag Manager integration, you should use the Leckerli custom tag template, see [GTM integration](./doc/GTM_INTEGRATION.md) for more information.
 
 ### Local files
 

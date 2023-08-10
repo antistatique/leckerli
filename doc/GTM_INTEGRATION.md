@@ -12,7 +12,7 @@ If you don't have any consent management yet, you will have to [review each tag]
 
 ## Installation
 
-### Create lackerli tag
+### Create Leckerli tag
 
 First you have to install the tag template (not yet available in the template gallery, so you need to import it manually).
 
@@ -32,7 +32,7 @@ Then you can add the tag and configure it.
 7. (Optional) Change the default consent (this is the consent values before the user's consent settings are updated). The default is set to _denied_ for all consents (_ad_storage_, _analytics_storage_, _functionality_storage_, _personalization_storage_, and _security_storage_).
 8. Click on the _Save_ button and optionally choose another tag name.
 
-### (Optional) Create leckerli trigger event
+### (Optional) Create Leckerli trigger event
 
 If you need to fire a tag when the user's consent settings are updated, you can configure a trigger. Remember that tags that do not have required additional consent have already been fired and should not be fired again if you are not sure about what will happen. Tags that have Built-In Consent Checks have probably handled the user's consent update.
 
@@ -44,12 +44,12 @@ If you need to fire a tag when the user's consent settings are updated, you can 
 
 ## Configuration
 
-### How to configure leckerli with GTM
+### How to configure Leckerli with GTM
 
-* Settings can be chnage in website code and tag settings, website config and tag config are merged (webside have priority)
+* Settings can be defined in website code and tag settings, website config and tag config are merged (webside have priority)
 * Cookie name is not editable
-* Auto load can be disable in tag config (but not from website), a script will still be loaded to setup callback
-* gtag must be loaded before leckerli
+* Auto load can be disabled in tag config (but not from website), a script will still be loaded to setup callback
+* gtag must be loaded before Leckerli
 
 ### How to use event trigger
 
@@ -59,4 +59,4 @@ If you need to fire a tag when the user's consent settings are updated, you can 
 re-import and overwrite current tag template, verify if any breaking change between your previous version and the new one exist, fix settings if required. Use preview mode to check that everything works well, then publish.
 
 ### a word about versionning
-minor uodate can introduce breaking change for now as leckerli is in active early developement stage, so tag templage will only load updated patch version. The goal is to avoid breaking change in minor update in near future.
+minor update can introduce breaking change for now as leckerli is in active early developement stage, so tag templage will only load updated patch version. The goal is to avoid breaking change in minor update in near future.
