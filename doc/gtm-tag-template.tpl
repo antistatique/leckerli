@@ -25,7 +25,7 @@ ___TEMPLATE_PARAMETERS___
     "name": "leckerliSettings",
     "displayName": "Leckerli Settings",
     "simpleValueType": true,
-    "defaultValue": "{\"permissions\": [\"ad_storage\", \"analytics_storage\", \"functionality_storage\", \"personalization_storage\", \"security_storag\"] }",
+    "defaultValue": "{\"permissions\": [\"ad_storage\", \"analytics_storage\", \"functionality_storage\", \"personalization_storage\", \"security_storage\"] }",
     "lineCount": 8,
     "help": "JSON format"
   },
