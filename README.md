@@ -148,6 +148,14 @@ window.leckerliSettings = {
 }
 ```
 
+### enableGtmAutoLoad
+When using the [GTM integration](./doc/GTM_INTEGRATION.md), you can add set this settings to `true` to automatically load the CSS and Leckerli scripts.
+Default to `false`.
+
+### minify
+When using the [GTM integration](./doc/GTM_INTEGRATION.md), you can ask the script to load non-minified scripts.
+This is mostly used for debugging purpose.
+
 ### baseData
 
 `baseData` is an object of any kind that **will be passed to the final cookie** as well. For example for store consent-id of some sort.

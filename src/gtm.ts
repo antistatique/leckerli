@@ -10,6 +10,9 @@ if (window.leckerliSettings.enableGtmAutoLoad) {
 if (window.leckerliSettings.enableGtmAutoLoad) {
   const leckerliScript = document.createElement('script');
   leckerliScript.src = `//www.unpkg.com/@antistatique/leckerli@${APP_VERSION}/dist/assets/leckerli.min.js`;
+  if (!window.leckerliSettings.minify) {
+    leckerliScript.src = `//www.unpkg.com/@antistatique/leckerli@${APP_VERSION}/dist/assets/leckerli.js`;
+  }
   document.body.appendChild(leckerliScript);
 }
 

@@ -5,6 +5,7 @@ type Settings = typeof defaultSettings & {
   baseData: any;
   permissions: string[];
   enableGtmAutoLoad: boolean;
+  minify: boolean;
 };
 
 export default Settings;

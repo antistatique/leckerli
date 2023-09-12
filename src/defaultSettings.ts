@@ -24,6 +24,7 @@ const defaultSettings = {
   settingsOpen: false,
   domain: window.location.hostname,
   enableGtmAutoLoad: false,
+  minify: true,
 };
 
 export default defaultSettings;
