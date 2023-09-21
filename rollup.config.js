@@ -13,7 +13,7 @@ export default [
     compact: true,
     sourcemap: false,
     format: 'iife',
-    dir: './dist/assets',
+    dir: './dist',
     entryFileNames: name + '.min.js',
     inlineDynamicImports: true,
   },

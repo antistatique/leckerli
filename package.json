@@ -8,13 +8,13 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "vite:build": "tsc && vite build",
-    "tailwind:build": "export NODE_ENV=production && npx tailwindcss -i ./src/index.css -o ./dist/assets/leckerli.min.css --minify --postcss postcss.config.cjs",
-    "tailwind:start": "npx tailwindcss -i ./src/index.css -o ./dist/assets/leckerli.min.css --watch",
+    "tailwind:build": "export NODE_ENV=production && npx tailwindcss -i ./src/index.css -o ./dist/leckerli.min.css --minify --postcss postcss.config.cjs",
+    "tailwind:start": "npx tailwindcss -i ./src/index.css -o ./dist/leckerli.min.css --watch",
     "rollup:build": "rollup --config",
-    "dev": "concurrently \"vite\" \"npm run tailwind:start\"",
+    "rollup:start": "rollup --config --watch",
+    "serve": "browser-sync start --server --files \"./dist/**/*.*\" --port 4321 --no-notify --no-open",
+    "dev": "concurrently \"npm run serve\" \"npm run rollup:start\" \"npm run tailwind:start\"",
     "build": "npm run tailwind:build && npm run rollup:build",
-    "preview": "vite preview",
     "prepublishOnly": "yarn run build && pinst --disable",
     "lint:js": "eslint --ext js,jsx,ts,tsx ./ --max-warnings=0",
     "fix:js": "eslint --ext js,jsx,ts,tsx ./ --max-warnings=0 --fix",
@@ -31,7 +31,6 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
-    "@preact/preset-vite": "^2.5.0",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@rollup/plugin-replace": "^5.0.2",
@@ -43,6 +42,7 @@
     "@typescript-eslint/parser": "^6.7.0",
     "autoprefixer": "^10.4.15",
     "babel-eslint": "^10.1.0",
+    "browser-sync": "^2.29.3",
     "concurrently": "^8.2.1",
     "eslint": "^8.49.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -63,8 +63,8 @@
     "postcss": "^8.4.29",
     "postcss-prefixwrap": "^1.40.0",
     "prettier": "^3.0.3",
+    "rollup": "^3.29.2",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.9"
+    "typescript": "^5.2.2"
   }
 }
