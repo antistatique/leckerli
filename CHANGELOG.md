@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove useless Vite.js
 
+### Changed
+- change default settings to use real examples (analytics + ads)
+
 ## [1.2.0] - 2023-08-22
 ### Added
 - Added an option to 'Auto Load' Leckerli from a GTM tag
