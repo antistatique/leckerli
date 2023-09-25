@@ -50,6 +50,33 @@ Using the html[lang] attribute, a _Trigger_ and a _Tag_ dedicated for each langu
 2. For each language
 	1. Create a _Trigger_ type "Consent Initialization" which fire only on your custom variable = your language code 
 	2. Create a _Tag_ type "Leckerli Cookie Banner" with json configuration according to your language strings
+	
+#### JSON configuration auf deutsch
+
+```
+{
+  "banner": {
+	"title": "Wir respektieren Ihre Privatsphäre.",
+	"description": "Wir verwenden Cookies, um Ihr Surf-Erlebnis zu verbessern, personalisierte Anzeigen oder Inhalte zu schalten und unseren Verkehr zu analysieren. Durch Klicken auf „Alles akzeptieren“ stimmen Sie unserer Verwendung von Cookies zu.",
+	"accept": "Alles akzeptieren",
+	"reject": "Alles ablehnen",
+	"customise": "Anpassen",
+	"save": "Speichern",
+	"settings": [
+	  {
+		"slug": "analytics_storage",
+		"title": "Google Analytics",
+		"description": "Google Analytics ermöglicht es, das Verhalten von Website-Besuchern zu messen und zu analysieren, indem es Schlüsseldaten über ihre Herkunft, Navigation und Engagement liefert, um die Website zu optimieren und das Benutzererlebnis zu verbessern."
+	  }
+	]
+  },
+  "permissions": [
+	"analytics_storage"
+  ]
+}
+
+```
+
 
 ## Configuration
 
