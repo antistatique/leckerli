@@ -8,9 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Change build system for iife format and more logic scoping (fix "jQuery conflicts")
 
-### Changed
-- BREAKING: move bundle in ./dist root instead of ./dist/assets directory
-
 ### Removed
 - Remove useless Vite.js
 

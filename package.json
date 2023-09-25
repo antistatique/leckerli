@@ -8,8 +8,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "tailwind:build": "export NODE_ENV=production && npx tailwindcss -i ./src/index.css -o ./dist/leckerli.min.css --minify --postcss postcss.config.cjs",
-    "tailwind:start": "npx tailwindcss -i ./src/index.css -o ./dist/leckerli.min.css --watch",
+    "tailwind:build": "export NODE_ENV=production && npx tailwindcss -i ./src/index.css -o ./dist/assets/leckerli.min.css --minify --postcss postcss.config.cjs",
+    "tailwind:start": "npx tailwindcss -i ./src/index.css -o ./dist/assets/leckerli.min.css --watch",
     "rollup:build": "rollup --config",
     "rollup:start": "rollup --config --watch",
     "serve": "browser-sync start --server --files \"./dist/**/*.*\" --port 4321 --no-notify --no-open",

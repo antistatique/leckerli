@@ -16,7 +16,7 @@ export default [
     compact: true,
     sourcemap: false,
     format: 'iife',
-    dir: './dist',
+    dir: './dist/assets',
     entryFileNames: name + '.min.js',
     inlineDynamicImports: true,
   },
