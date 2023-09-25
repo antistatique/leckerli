@@ -14,7 +14,7 @@ To use leckerli into your website, simply add the following CSS/JavaScript in yo
   <!-- somewhere in the <head /> -->
   <link
     rel="stylesheet"
-    href="//www.unpkg.com/@antistatique/leckerli@1.1/dist/assets/leckerli.min.css"
+    href="//www.unpkg.com/@antistatique/leckerli@1.2/dist/assets/leckerli.min.css"
   />
 </head>
 <body>
@@ -22,7 +22,7 @@ To use leckerli into your website, simply add the following CSS/JavaScript in yo
   <script
     defer
     type="module"
-    src="//www.unpkg.com/@antistatique/leckerli@1.1/dist/assets/leckerli.min.js"
+    src="//www.unpkg.com/@antistatique/leckerli@1.2/dist/assets/leckerli.min.js"
   ></script>
 </body>
 </html>

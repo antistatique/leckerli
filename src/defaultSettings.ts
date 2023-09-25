@@ -10,14 +10,20 @@ const defaultSettings = {
     save: 'Save',
     settings: [
       {
-        slug: 'settings',
-        title: 'Preferences',
+        slug: 'analytics_storage',
+        title: 'Statistics',
         description:
-          'Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in.',
+          'Statistic cookies help website owners to understand how visitors interact with websites by collecting and reporting information anonymously.',
+      },
+      {
+        slug: 'ad_storage',
+        title: 'Marketing',
+        description:
+          'Marketing cookies are used to track visitors across websites. The intention is to display ads that are relevant and engaging for the individual user and thereby more valuable for publishers and third party advertisers.',
       },
     ],
   },
-  permissions: ['settings'],
+  permissions: ['analytics_storage', 'ad_storage'],
   baseData: {},
   cookie: {},
   choiceMade: false,
