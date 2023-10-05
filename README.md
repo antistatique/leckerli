@@ -62,7 +62,7 @@ It's the `domain` of your cookie, by default the current website (`window.locati
 
 ### expires
 
-It's the `expires` of your cookie, by default it is set for a month from the current day. It should be either a Date or a number.
+It's the `expires` of your cookie, by default it is set for 92 days (3 months) from the current day. It should be a number of days.
 
 ### banner
 
