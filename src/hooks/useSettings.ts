@@ -1,5 +1,11 @@
 import cookies from 'js-cookie';
-import { isNil, isNotNil, mergeDeepRight } from 'ramda';
+import {
+  isEmpty,
+  isNil,
+  isNotNil,
+  mergeDeepRight,
+  symmetricDifference,
+} from 'ramda';
 import { create } from 'zustand';
 
 import defaultSettings from '../defaultSettings.ts';
@@ -56,7 +62,14 @@ initialState.cookie = isNotNil(initialCookie)
     );
 
 // With the existing cookie or not, set the choiceMade
-initialState.choiceMade = isNotNil(initialCookie);
+initialState.choiceMade =
+  isNotNil(initialCookie) &&
+  isEmpty(
+    symmetricDifference(
+      Object.keys(initialState.cookie),
+      initialState.permissions
+    )
+  );
 
 // Deliver the hook
 const useSettings = create<SettingsStore>((set, getState) => ({
