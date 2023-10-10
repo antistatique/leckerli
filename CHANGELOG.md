@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - Add documentation for i18n (first approach)
 
+### Added
+- Add classes to override default settings banner style
 
 ## [1.2.1] - 2023-09-25
 ### Fixed

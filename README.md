@@ -264,15 +264,20 @@ You can theme Leckerli with the following CSS custom properties (variables):
 
 To override any other style, you can use the following classes:
 
-| Class                   | Description                         |
-| ----------------------- | ----------------------------------- |
-| `.banner-wrapper`       | Override the banner display style   |
-| `.banner-title`         | Override the title style            |
-| `.banner-description`   | Override the description style      |
-| `.banner-btns`          | Override the buttons display style  |
-| `.banner-btn-customise` | Override the customize button style |
-| `.banner-btn-accept`    | Override the accept button style    |
-| `.banner-btn-reject`    | Override the reject button style    |
+| Class                         | Description                                      |
+| -----------------------       | -------------------------------------------------|
+| `.banner-wrapper`             | Override the banner display style                |
+| `.banner-title`               | Override the title style                         |
+| `.banner-description`         | Override the description style                   |
+| `.banner-btns`                | Override the buttons display style               |
+| `.banner-btn-customise`       | Override the customize button style              |
+| `.banner-btn-accept`          | Override the accept button style                 |
+| `.banner-btn-reject`          | Override the reject button style                 |
+| `.banner-settings-title`      | Override the custom settings title style         |
+| `.banner-settings-toggle`     | Override the custom settings toggle button style |
+| `.banner-settings-description`| Override the custom settings description style   |
+| `.banner-settings-save`       | Override the custom settings save button style   |
+| `.banner-settings-close`      | Override the custom settings close button style  |
 
 ## 🧑‍💻 Contribute
 
