@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.2] - 2023-10-11
+## [1.2.3] - 2023-10-11
 - Add documentation for i18n (first approach)
 
 ### Added
@@ -75,7 +75,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - First POC
 
-[Unreleased]: https://github.com/antistatique/leckerli/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/antistatique/leckerli/compare/v1.2.3...HEAD
+[1.2.3]: https://github.com/antistatique/leckerli/compare/v1.2.1...v1.2.3
 [1.2.1]: https://github.com/antistatique/leckerli/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/antistatique/leckerli/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/antistatique/leckerli/compare/v1.1.0...v1.1.1
