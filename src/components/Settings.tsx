@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import { useState } from 'preact/hooks';
 
 import useSettings from '../hooks/useSettings';
@@ -6,12 +7,49 @@ const Settings = () => {
   const { cookie, setPermissions, banner, setModal } = useSettings();
   const [cookieProxy, setCookieProxy] = useState(cookie);
 
+  // Prevent the injection of unwanted HTML tags in the banner description
+  const allowedTags = [
+    'b',
+    'i',
+    'em',
+    'strong',
+    'p',
+    'ul',
+    'li',
+    'ol',
+    'span',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'a',
+    'div',
+  ];
+  const allowedAttributes = ['href', 'target'];
+
   return (
     <div className="fixed bottom-0 left-0 w-full max-w-lg max-h-full px-5 py-4 m-2 overflow-y-auto text-black shadow-md shadow-black/25 z-[9999] bg-background text-foreground font-primary rounded-md banner-wrapper">
       <div className="space-y-6">
-        <h3 className="w-10/12 m-0 text-xl font-semibold font-primary md:text-2xl banner-title">
-          {banner.customise}
-        </h3>
+        <div>
+          <h3 className="w-10/12 m-0 text-xl font-semibold font-primary md:text-2xl banner-title">
+            {banner.customise}
+          </h3>
+
+          {banner.customiseDescription && (
+            <p
+              className="m-0 mt-2 text-sm leading-snug font-primary md:text-base banner-settings-general-description"
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(banner.customiseDescription, {
+                  USE_PROFILES: { html: true },
+                  ALLOWED_TAGS: allowedTags,
+                  ALLOWED_ATTR: allowedAttributes,
+                }),
+              }}
+            />
+          )}
+        </div>
 
         {banner.settings.map(({ slug, title, description }) => (
           <div key={`setting-${slug}`}>
