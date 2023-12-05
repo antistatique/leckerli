@@ -170,6 +170,7 @@ You could have something like:
       accept: 'Accepter tout',
       reject: 'Tout rejeter',
       customise: 'Personnaliser',
+      customiseDescription: 'Vous pouvez ajuster vos préférences en acceptant ou refusant chaque catégorie de cookies utilisée sur ce site.',
       save: 'Sauvegarder',
       settings: [
         {
