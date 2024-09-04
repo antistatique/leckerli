@@ -61,6 +61,7 @@ Using the html[lang] attribute, a _Trigger_ and a _Tag_ dedicated for each langu
 	"accept": "Alles akzeptieren",
 	"reject": "Alles ablehnen",
 	"customise": "Anpassen",
+	"customiseDescription": "Beim Surfen im Internet werden Daten, meist Cookies, auf Ihrem Gerät gespeichert oder abgerufen. Diese dienen hauptsächlich der Funktionalität der Website und können auch für Statistik, Sicherheit, Überwachung und Marketing genutzt werden. Obwohl sie Sie meist nicht direkt identifizieren, ermöglichen sie ein personalisiertes Erlebnis. Sie können Ihre Cookie-Präferenzen anpassen, aber die Ablehnung bestimmter Cookies kann Ihr Surferlebnis beeinträchtigen.",
 	"save": "Speichern",
 	"settings": [
 	  {
