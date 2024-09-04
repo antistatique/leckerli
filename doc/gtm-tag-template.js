@@ -1,6 +1,7 @@
 const copyFromWindow = require('copyFromWindow');
 const createQueue = require('createQueue');
 const getCookieValues = require('getCookieValues');
+const gtagSet = require('gtagSet');
 const injectScript = require('injectScript');
 const JSON = require('JSON');
 const log = require('logToConsole');
@@ -57,7 +58,7 @@ const updateLeckerliConsent = leckerliConsent => {
  */
 const main = (data) => {
   // Set developer ID
-  // gtagSet('developer_id.<replace_with_your_developer_id>', true);
+  gtagSet('developer_id.dM2ExY2', true);
 
   // Set default consent state
   const defaultConsentState = { wait_for_update: 500 };
