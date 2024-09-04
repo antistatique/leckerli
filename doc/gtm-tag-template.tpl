@@ -164,7 +164,7 @@ const main = (data) => {
   if (typeof data.defaultConsent !== 'undefined')
   {
     data.defaultConsent.reduce((hash, item) => {
-      hash[item.consentName] = item.consentState;
+      return hash[item.consentName] = item.consentState;
     }, defaultConsentState);
   }
 
