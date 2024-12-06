@@ -61,15 +61,16 @@ const main = (data) => {
   gtagSet('developer_id.dM2ExY2', true);
 
   // Set default consent state
-  const defaultConsentState = { wait_for_update: 500 };
+  let defaultConsentState = { wait_for_update: 500 };
   Object.entries(DEFAULT_CONSENT_STATE).forEach((item) => {
     defaultConsentState[item[0]] = item[1];
   });
 
   if (typeof data.defaultConsent !== 'undefined')
   {
-    data.defaultConsent.reduce((hash, item) => {
-      return hash[item.consentName] = item.consentState;
+    defaultConsentState = data.defaultConsent.reduce((hash, item) => {
+      hash[item.consentName] = item.consentState;
+      return hash;
     }, defaultConsentState);
   }
 
