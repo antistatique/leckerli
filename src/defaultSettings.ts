@@ -1,5 +1,6 @@
 const defaultSettings = {
   name: 'leckerli',
+  expires: 92,
   banner: {
     title: 'This website uses cookies.',
     description:

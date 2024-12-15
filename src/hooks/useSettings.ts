@@ -26,19 +26,15 @@ const initialState = mergeDeepRight(
   window.leckerliSettings ?? {}
 );
 
-// Build the expiration date
-const expirationDate = new Date();
-expirationDate.setMonth(expirationDate.getMonth() + 1);
-
 // Define cookie configuration
 const cookieConfig: {
   sameSite: 'strict';
   domain: string;
-  expires?: number | Date;
+  expires: number;
 } = {
   sameSite: 'strict',
   domain: initialState.domain,
-  expires: expirationDate, // 1 month by default
+  expires: initialState.expires, // 3 months by default
 };
 
 // Get cookie value

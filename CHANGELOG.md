@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Support GTM consent v2 (thanks to @francoisbruneau).
+- Doc for customiseDescription string.
+
+### Fixed
+- Use expires setting value to set cookie (#8).
+- Fix issue on reduce config in GTM javascript environment (#19).
 
 ## [1.2.4] - 2023-11-30
 ### Added
