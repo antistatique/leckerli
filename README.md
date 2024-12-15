@@ -77,15 +77,16 @@ window.leckerliSettings = {
     accept: 'Accept all',
     reject: 'Deny',
     customise: 'Customize',
+    customiseDescription: '',
     save: 'Save'
   },
   //...
 }
 ```
 
-if the `title` or `description` are not provided, it won't be shown.
+if the `title`, `description` or `customiseDescription` are not provided, they won't be shown.
 
-The `description` can contain markup in a restricted way: only the following tags are allowed:
+The `description` and `customizeDescription` can contain markup in a restricted way: only the following tags are allowed:
 
 ```ts
 const allowedTags = [
@@ -169,6 +170,7 @@ You could have something like:
       accept: 'Accepter tout',
       reject: 'Tout rejeter',
       customise: 'Personnaliser',
+      customiseDescription: 'Vous pouvez ajuster vos préférences en acceptant ou refusant chaque catégorie de cookies utilisée sur ce site.',
       save: 'Sauvegarder',
       settings: [
         {
@@ -264,15 +266,21 @@ You can theme Leckerli with the following CSS custom properties (variables):
 
 To override any other style, you can use the following classes:
 
-| Class                   | Description                         |
-| ----------------------- | ----------------------------------- |
-| `.banner-wrapper`       | Override the banner display style   |
-| `.banner-title`         | Override the title style            |
-| `.banner-description`   | Override the description style      |
-| `.banner-btns`          | Override the buttons display style  |
-| `.banner-btn-customise` | Override the customize button style |
-| `.banner-btn-accept`    | Override the accept button style    |
-| `.banner-btn-reject`    | Override the reject button style    |
+| Class                                  | Description                                            |
+|----------------------------------------|--------------------------------------------------------|
+| `.banner-wrapper`                      | Override the banner display style                      |
+| `.banner-title`                        | Override the title style                               |
+| `.banner-description`                  | Override the description style                         |
+| `.banner-btns`                         | Override the buttons display style                     |
+| `.banner-btn-customise`                | Override the customize button style                    |
+| `.banner-btn-accept`                   | Override the accept button style                       |
+| `.banner-btn-reject`                   | Override the reject button style                       |
+| `.banner-settings-title`               | Override the custom settings title style               |
+| `.banner-settings-general-description` | Override the custom settings general description style |
+| `.banner-settings-toggle`              | Override the custom settings toggle button style       |
+| `.banner-settings-description`         | Override the custom settings description style         |
+| `.banner-settings-save`                | Override the custom settings save button style         |
+| `.banner-settings-close`               | Override the custom settings close button style        |
 
 ## 🧑‍💻 Contribute
 

@@ -25,7 +25,7 @@ ___TEMPLATE_PARAMETERS___
     "name": "leckerliSettings",
     "displayName": "Leckerli Settings",
     "simpleValueType": true,
-    "defaultValue": "{\"permissions\": [\"ad_storage\", \"analytics_storage\", \"functionality_storage\", \"personalization_storage\", \"security_storage\"] }",
+    "defaultValue": "{\"permissions\": [\"ad_storage\", \"analytics_storage\", \"ad_user_data\", \"ad_personalization\", \"functionality_storage\", \"personalization_storage\", \"security_storage\"] }",
     "lineCount": 8,
     "help": "JSON format"
   },
@@ -56,6 +56,14 @@ ___TEMPLATE_PARAMETERS___
           {
             "value": "analytics_storage",
             "displayValue": "analytics_storage"
+          },
+          {
+            "value": "ad_user_data",
+            "displayValue": "ad_user_data"
+          },
+          {
+            "value": "ad_personalization",
+            "displayValue": "ad_personalization"
           },
           {
             "value": "functionality_storage",
@@ -97,6 +105,7 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 const copyFromWindow = require('copyFromWindow');
 const createQueue = require('createQueue');
 const getCookieValues = require('getCookieValues');
+const gtagSet = require('gtagSet');
 const injectScript = require('injectScript');
 const JSON = require('JSON');
 const log = require('logToConsole');
@@ -108,6 +117,8 @@ const updateConsentState = require('updateConsentState');
 const DEFAULT_CONSENT_STATE = {
   ad_storage: 'denied',
   analytics_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
   functionality_storage: 'denied',
   personalization_storage: 'denied',
   security_storage: 'denied',
@@ -153,18 +164,19 @@ const updateLeckerliConsent = leckerliConsent => {
  */
 const main = (data) => {
   // Set developer ID
-  // gtagSet('developer_id.<replace_with_your_developer_id>', true);
+  gtagSet('developer_id.dM2ExY2', true);
 
   // Set default consent state
-  const defaultConsentState = { wait_for_update: 500 };
+  let defaultConsentState = { wait_for_update: 500 };
   Object.entries(DEFAULT_CONSENT_STATE).forEach((item) => {
     defaultConsentState[item[0]] = item[1];
   });
 
   if (typeof data.defaultConsent !== 'undefined')
   {
-    data.defaultConsent.reduce((hash, item) => {
+    defaultConsentState = data.defaultConsent.reduce((hash, item) => {
       hash[item.consentName] = item.consentState;
+      return hash;
     }, defaultConsentState);
   }
 
@@ -414,6 +426,68 @@ ___WEB_PERMISSIONS___
                 "mapValue": [
                   {
                     "type": 1,
+                    "string": "ad_user_data"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "ad_personalization"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
                     "string": "personalization_storage"
                   },
                   {
@@ -623,6 +697,32 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "gtm-leckerli"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "write_data_layer",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "keyPatterns",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 1,
+                "string": "developer_id.dM2ExY2"
               }
             ]
           }

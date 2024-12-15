@@ -8,6 +8,7 @@ const defaultSettings = {
     accept: 'Accept all',
     reject: 'Deny',
     customise: 'Customize',
+    customiseDescription: '',
     save: 'Save',
     settings: [
       {

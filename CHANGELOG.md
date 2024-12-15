@@ -6,10 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Add documentation for i18n (first approach)
+- Support GTM consent v2 (thanks to @francoisbruneau).
+- Doc for customiseDescription string.
 
 ### Fixed
- - Use expires setting value to set cookie.
+- Use expires setting value to set cookie (#8).
+- Fix issue on reduce config in GTM javascript environment (#19).
+
+## [1.2.4] - 2023-11-30
+### Added
+- Add new optional description for the Settings panel
+
+## [1.2.3] - 2023-10-11
+- Add documentation for i18n (first approach)
+
+### Added
+- Add classes to override default settings banner style
 
 ## [1.2.1] - 2023-09-25
 ### Fixed
@@ -74,7 +86,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - First POC
 
-[Unreleased]: https://github.com/antistatique/leckerli/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/antistatique/leckerli/compare/v1.2.4...HEAD
+[1.2.4]: https://github.com/antistatique/leckerli/compare/v1.2.3...v1.2.4
+[1.2.3]: https://github.com/antistatique/leckerli/compare/v1.2.1...v1.2.3
 [1.2.1]: https://github.com/antistatique/leckerli/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/antistatique/leckerli/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/antistatique/leckerli/compare/v1.1.0...v1.1.1
