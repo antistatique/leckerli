@@ -105,6 +105,7 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 const copyFromWindow = require('copyFromWindow');
 const createQueue = require('createQueue');
 const getCookieValues = require('getCookieValues');
+const gtagSet = require('gtagSet');
 const injectScript = require('injectScript');
 const JSON = require('JSON');
 const log = require('logToConsole');
@@ -163,18 +164,19 @@ const updateLeckerliConsent = leckerliConsent => {
  */
 const main = (data) => {
   // Set developer ID
-  // gtagSet('developer_id.<replace_with_your_developer_id>', true);
+  gtagSet('developer_id.dM2ExY2', true);
 
   // Set default consent state
-  const defaultConsentState = { wait_for_update: 500 };
+  let defaultConsentState = { wait_for_update: 500 };
   Object.entries(DEFAULT_CONSENT_STATE).forEach((item) => {
     defaultConsentState[item[0]] = item[1];
   });
 
   if (typeof data.defaultConsent !== 'undefined')
   {
-    data.defaultConsent.reduce((hash, item) => {
-      return hash[item.consentName] = item.consentState;
+    defaultConsentState = data.defaultConsent.reduce((hash, item) => {
+      hash[item.consentName] = item.consentState;
+      return hash;
     }, defaultConsentState);
   }
 
@@ -695,6 +697,32 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "gtm-leckerli"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "write_data_layer",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "keyPatterns",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 1,
+                "string": "developer_id.dM2ExY2"
               }
             ]
           }
