@@ -13,6 +13,8 @@ const updateConsentState = require('updateConsentState');
 const DEFAULT_CONSENT_STATE = {
   ad_storage: 'denied',
   analytics_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
   functionality_storage: 'denied',
   personalization_storage: 'denied',
   security_storage: 'denied',
