@@ -29,7 +29,7 @@ Then you can add the tag and configure it.
 4. Click on the _Tag Configuration_ block and select _Leckerli Cookie Banner_ in the _Custom_ section.
 5. (Optional) Click on _Tag permissions_ and review them.
 6. Set the _leckerli settings_ according to the configuration section below and the [Leckerli README](../README.md). The field must be a valid JSON string and can have multiple lines. You should at least remove not required consent from the permissions array.
-7. (Optional) Change the default consent (this is the consent values before the user's consent settings are updated). The default is set to _denied_ for all consents (_ad_storage_, _analytics_storage_, _functionality_storage_, _personalization_storage_, and _security_storage_).
+7. (Optional) Change the default consent (this is the consent values before the user's consent settings are updated). The default is set to _denied_ for all consents (_ad_storage_, _analytics_storage_, _ad_user_data_, _ad_personalization_, _functionality_storage_, _personalization_storage_, and _security_storage_).
 8. Click on the _Save_ button and optionally choose another tag name.
 
 ### (Optional) Create Leckerli trigger event
@@ -61,6 +61,7 @@ Using the html[lang] attribute, a _Trigger_ and a _Tag_ dedicated for each langu
 	"accept": "Alles akzeptieren",
 	"reject": "Alles ablehnen",
 	"customise": "Anpassen",
+	"customiseDescription": "Beim Surfen im Internet werden Daten, meist Cookies, auf Ihrem Gerät gespeichert oder abgerufen. Diese dienen hauptsächlich der Funktionalität der Website und können auch für Statistik, Sicherheit, Überwachung und Marketing genutzt werden. Obwohl sie Sie meist nicht direkt identifizieren, ermöglichen sie ein personalisiertes Erlebnis. Sie können Ihre Cookie-Präferenzen anpassen, aber die Ablehnung bestimmter Cookies kann Ihr Surferlebnis beeinträchtigen.",
 	"save": "Speichern",
 	"settings": [
 	  {

@@ -1,5 +1,6 @@
 const defaultSettings = {
   name: 'leckerli',
+  expires: 92,
   banner: {
     title: 'This website uses cookies.',
     description:
@@ -7,6 +8,7 @@ const defaultSettings = {
     accept: 'Accept all',
     reject: 'Deny',
     customise: 'Customize',
+    customiseDescription: '',
     save: 'Save',
     settings: [
       {
