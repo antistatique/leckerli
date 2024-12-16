@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support GTM consent v2 (thanks to @francoisbruneau).
 - Doc for customiseDescription string.
 
+### Changed
+- Display banner when permissions list change
+
 ### Fixed
 - Use expires setting value to set cookie (#8).
 - Fix issue on reduce config in GTM javascript environment (#19).
@@ -18,9 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add new optional description for the Settings panel
 
 ## [1.2.3] - 2023-10-11
-- Add documentation for i18n (first approach)
-
 ### Added
+- Add documentation for i18n (first approach)
 - Add classes to override default settings banner style
 
 ## [1.2.1] - 2023-09-25
