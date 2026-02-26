@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Fix mergeObject function in GTM tag template to work correctly in sandboxed JS environment
+
+## [1.2.5] - 2025-08-29
 ### Added
 - Support GTM consent v2 (thanks to @francoisbruneau).
 - Doc for customiseDescription string.
@@ -88,7 +92,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - First POC
 
-[Unreleased]: https://github.com/antistatique/leckerli/compare/v1.2.4...HEAD
+[Unreleased]: https://github.com/antistatique/leckerli/compare/v1.2.5...HEAD
+[1.2.5]: https://github.com/antistatique/leckerli/compare/v1.2.4...v1.2.5
 [1.2.4]: https://github.com/antistatique/leckerli/compare/v1.2.3...v1.2.4
 [1.2.3]: https://github.com/antistatique/leckerli/compare/v1.2.1...v1.2.3
 [1.2.1]: https://github.com/antistatique/leckerli/compare/v1.2.0...v1.2.1

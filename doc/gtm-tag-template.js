@@ -28,15 +28,20 @@ const LECKERLI_JS_URL = 'https://www.unpkg.com/@antistatique/leckerli@1.2/dist/a
 /**
  * Used to merge an object in another.
  */
-const mergeObject = (target, source) => {
-  Object.entries(source).reduce((hash, item) => {
-    if (typeof item[1] === 'object') {
-      mergeObject(hash[item[0]], item[1]);
-    } else {
-      hash[item[0]] = item[1];
+var mergeObject = function(target, source) {
+  for (var key in source) {
+    if (source.hasOwnProperty(key)) {
+      var value = source[key];
+      if (value && typeof value === 'object' && value.constructor === Object) {
+        if (!target[key] || typeof target[key] !== 'object' || target[key].constructor !== Object) {
+          target[key] = {};
+        }
+        mergeObject(target[key], value);
+      } else {
+        target[key] = value;
+      }
     }
-    return hash;
-  }, target);
+  }
 };
 
 /**
