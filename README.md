@@ -14,7 +14,7 @@ To use leckerli into your website, simply add the following CSS/JavaScript in yo
   <!-- somewhere in the <head /> -->
   <link
     rel="stylesheet"
-    href="//www.unpkg.com/@antistatique/leckerli@1.2/dist/assets/leckerli.min.css"
+    href="//www.unpkg.com/@antistatique/leckerli@1.3/dist/assets/leckerli.min.css"
   />
 </head>
 <body>
@@ -22,7 +22,7 @@ To use leckerli into your website, simply add the following CSS/JavaScript in yo
   <script
     defer
     type="module"
-    src="//www.unpkg.com/@antistatique/leckerli@1.2/dist/assets/leckerli.min.js"
+    src="//www.unpkg.com/@antistatique/leckerli@1.3/dist/assets/leckerli.min.js"
   ></script>
 </body>
 </html>
@@ -301,7 +301,7 @@ $ yarn dev
 1. Create a `release/x.y.z` branch from `main`
 2. Bump version in `package.json`
 3. Update `CHANGELOG.md` via `chan release x.y.z`
-4. **If bumping the minor or major version** (e.g. 1.2 → 1.3), update `LECKERLI_JS_URL` in `doc/gtm-tag-template.js` to match the new version (e.g. `@antistatique/leckerli@1.3/dist/assets/leckerli-gtm.min.js`)
+4. **If bumping the minor or major version** (e.g. 1.2 → 1.3), update `LECKERLI_JS_URL` in both `doc/gtm-tag-template.js` and `doc/gtm-tag-template.tpl` to match the new version (e.g. `@antistatique/leckerli@1.3/dist/assets/leckerli-gtm.min.js`)
 5. Run `yarn build` to rebuild dist files
 6. Commit with message `Bump vx.y.z` (include `dist/` files)
 7. Open a PR from `release/x.y.z` → `main` and merge
