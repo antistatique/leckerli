@@ -62,7 +62,9 @@ initialState.choiceMade =
   isNotNil(initialCookie) &&
   isEmpty(
     symmetricDifference(
-      Object.keys(initialState.cookie),
+      Object.keys(initialState.cookie).filter(
+        k => !Object.keys(initialState.baseData).includes(k)
+      ),
       initialState.permissions
     )
   );
