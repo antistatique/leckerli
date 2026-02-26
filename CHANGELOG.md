@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Add `displayDelay` option to delay the banner appearance (in milliseconds)
-- Add slide-in animation on the banner
+- Add slide-up animation on the banner
 
 ## [1.2.6] - 2026-02-26
 ### Changed
