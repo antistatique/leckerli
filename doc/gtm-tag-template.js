@@ -23,7 +23,7 @@ const DEFAULT_CONSENT_STATE = {
 const ALLOWED_CONSENT_STATE = Object.keys(DEFAULT_CONSENT_STATE);
 const CONSENT_UPDATE_CUSTOM_EVENT = 'leckerliConsentUpdate';
 const COOKIE_NAME = 'gtm-leckerli';
-const LECKERLI_JS_URL = 'https://www.unpkg.com/@antistatique/leckerli@1.2/dist/assets/leckerli-gtm.min.js';
+const LECKERLI_JS_URL = 'https://www.unpkg.com/@antistatique/leckerli@1.3/dist/assets/leckerli-gtm.min.js';
 
 /**
  * Used to merge an object in another.
