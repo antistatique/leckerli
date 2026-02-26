@@ -290,3 +290,16 @@ To locally run the project:
 $ yarn
 $ yarn dev
 ```
+
+### Release Process
+
+1. Create a `release/x.y.z` branch from `main`
+2. Bump version in `package.json`
+3. Update `CHANGELOG.md` via `chan release x.y.z`
+4. **If bumping the minor or major version** (e.g. 1.2 → 1.3), update `LECKERLI_JS_URL` in `doc/gtm-tag-template.js` to match the new version (e.g. `@antistatique/leckerli@1.3/dist/assets/leckerli-gtm.min.js`)
+5. Run `yarn build` to rebuild dist files
+6. Commit with message `Bump vx.y.z` (include `dist/` files)
+7. Open a PR from `release/x.y.z` → `main` and merge
+8. Tag the release: both `x.y.z` and `vx.y.z` tags are created (lightweight)
+9. Create a GitHub release via `chan gh-release x.y.z`
+10. Publish to npm (`yarn publish`)
