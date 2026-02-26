@@ -32,6 +32,7 @@ const defaultSettings = {
   settingsOpen: false,
   domain: window.location.hostname,
   enableGtmAutoLoad: false,
+  displayDelay: 0,
 };
 
 export default defaultSettings;

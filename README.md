@@ -153,6 +153,10 @@ window.leckerliSettings = {
 
 `baseData` is an object of any kind that **will be passed to the final cookie** as well. For example for store consent-id of some sort.
 
+### displayDelay
+
+It's the time in **milliseconds** before the banner appears after page load. By default it is set to `0` (the banner appears immediately). The delay is only applied when the user has not yet made a choice.
+
 ### For example
 
 You could have something like:
@@ -189,6 +193,7 @@ You could have something like:
       'analytics_storage',
       'personalization_storage',
     ],
+    displayDelay: 2000, // milliseconds
   }
 </script>
 ```

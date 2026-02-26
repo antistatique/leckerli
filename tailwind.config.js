@@ -19,7 +19,16 @@ export default {
       },
       fontFamily: {
         primary: `var(--leckerli-font, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji")`
-      }
+      },
+      keyframes: {
+        'slide-in-up': {
+          '0%': { opacity: '0.4', transform: 'translateY(2rem)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'slide-in-up': 'slide-in-up 0.4s ease-out',
+      },
     },
   },
   plugins: [],
