@@ -197,9 +197,13 @@ const main = (data) => {
   leckerliSettings.name = COOKIE_NAME;
 
   // Check if cookie is set and run updateLeckerliConsent()
-  const consent = JSON.parse(getCookieValues(leckerliSettings.name));
-  if (typeof consent !== 'undefined') {
-    updateLeckerliConsent(consent);
+  // getCookieValues() always returns an Array (empty when no cookie).
+  const cookieValues = getCookieValues(leckerliSettings.name);
+  if (cookieValues.length > 0) {
+    const consent = JSON.parse(cookieValues[0]);
+    if (typeof consent !== 'undefined') {
+      updateLeckerliConsent(consent);
+    }
   }
 
   // Set leckerli settings
